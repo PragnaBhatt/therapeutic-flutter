@@ -1,0 +1,58 @@
+{
+    "sourceFile": "lib/app/modules/home/controllers/home_controller.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1662962124538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662962132867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n import 'package:get/get.dart';\n+import 'package:therapeutic/app/modules/home/providers/type_provider.dart';\n \n class HomeController extends GetxController {\n   //TODO: Implement HomeController\n \n   final count = 0.obs;\n   @override\n   void onInit() {\n \n-    \n+    TypeProvider typeProvider\n     super.onInit();\n   }\n \n   @override\n"
+                },
+                {
+                    "date": 1662962149820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n \n   final count = 0.obs;\n   @override\n   void onInit() {\n-\n-    TypeProvider typeProvider\n+    TypeProvider typeProvider = TypeProvider();\n+    typeProvider.\n     super.onInit();\n   }\n \n   @override\n"
+                },
+                {
+                    "date": 1662962156374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   final count = 0.obs;\n   @override\n   void onInit() {\n     TypeProvider typeProvider = TypeProvider();\n-    typeProvider.\n+    typeProvider.ge\n     super.onInit();\n   }\n \n   @override\n"
+                },
+                {
+                    "date": 1662962162569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   final count = 0.obs;\n   @override\n   void onInit() {\n     TypeProvider typeProvider = TypeProvider();\n-    typeProvider.ge\n+    typeProvider.getType(1);\n     super.onInit();\n   }\n \n   @override\n"
+                },
+                {
+                    "date": 1662962364371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   final count = 0.obs;\n   @override\n   void onInit() {\n     TypeProvider typeProvider = TypeProvider();\n-    typeProvider.getType(1);\n+   \n     super.onInit();\n   }\n \n   @override\n"
+                },
+                {
+                    "date": 1662962370444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,5 +22,6 @@\n     super.onClose();\n   }\n \n   void increment() => count.value++;\n+  void \n }\n"
+                },
+                {
+                    "date": 1662962379322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n     super.onClose();\n   }\n \n   void increment() => count.value++;\n-  void \n+  void getTypeData(){}\n }\n"
+                },
+                {
+                    "date": 1662962387949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,10 @@\n     super.onClose();\n   }\n \n   void increment() => count.value++;\n-  void getTypeData(){}\n+  void getTypeData(){\n+\n+\n+    type\n+  }\n }\n"
+                },
+                {
+                    "date": 1662962422551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n class HomeController extends GetxController {\n   //TODO: Implement HomeController\n \n   final count = 0.obs;\n-  TypeProvider typeProvider\n+  TypeProvider typeProvider;\n   @override\n   void onInit() {\n     TypeProvider typeProvider = TypeProvider();\n    \n"
+                },
+                {
+                    "date": 1662962436059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,7 +26,7 @@\n   void increment() => count.value++;\n   void getTypeData(){\n \n \n-    typeProvider.get\n+    typeProvider.getType(id)\n   }\n }\n"
+                }
+            ],
+            "date": 1662962124538,
+            "name": "Commit-0",
+            "content": "import 'package:get/get.dart';\n\nclass HomeController extends GetxController {\n  //TODO: Implement HomeController\n\n  final count = 0.obs;\n  @override\n  void onInit() {\n\n    \n    super.onInit();\n  }\n\n  @override\n  void onReady() {\n    super.onReady();\n  }\n\n  @override\n  void onClose() {\n    super.onClose();\n  }\n\n  void increment() => count.value++;\n}\n"
+        }
+    ]
+}

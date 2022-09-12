@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/app/modules/home/type_model.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1662962046609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1662962046609,
+            "name": "Commit-0",
+            "content": "class Type {\n  int? total;\n  List<Data>? data;\n\n  Type({this.total, this.data});\n\n  Type.fromJson(Map<String, dynamic> json) {\n    total = json['total'];\n    if (json['data'] != null) {\n      data = <Data>[];\n      json['data'].forEach((v) {\n        data?.add(Data.fromJson(v));\n      });\n    }\n  }\n\n  // Map<String, dynamic> toJson() {\n  //   final data = <String, dynamic>{};\n  //   data['total'] = total;\n  //   if (data != null) {\n  //     data['data'] = data?.map((v) => v.toJson()).toList();\n  //   }\n  //   return data;\n  // }\n}\n\nclass Data {\n  String? sId;\n  int? total;\n\n  Data({this.sId, this.total});\n\n  Data.fromJson(Map<String, dynamic> json) {\n    sId = json['_id'];\n    total = json['total'];\n  }\n\n  Map<String, dynamic> toJson() {\n    final data = <String, dynamic>{};\n    data['_id'] = sId;\n    data['total'] = total;\n    return data;\n  }\n}\n"
+        }
+    ]
+}

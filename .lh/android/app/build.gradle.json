@@ -1,0 +1,62 @@
+{
+    "sourceFile": "android/app/build.gradle",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1662632240487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662632249099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n }\r\n \r\n apply plugin: 'com.android.application'\r\n apply plugin: 'kotlin-android'\r\n-\r\n+apply plugin 'com.google.gms.google-services'\r\n apply from: \"$flutterRoot/packages/flutter_tools/gradle/flutter.gradle\"\r\n \r\n android {\r\n     compileSdkVersion flutter.compileSdkVersion\r\n"
+                },
+                {
+                    "date": 1662632264512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n }\r\n \r\n apply plugin: 'com.android.application'\r\n apply plugin: 'kotlin-android'\r\n-apply plugin 'com.google.gms.google-services'\r\n+apply plugin: 'com.google.gms.google-services'\r\n apply from: \"$flutterRoot/packages/flutter_tools/gradle/flutter.gradle\"\r\n \r\n android {\r\n     compileSdkVersion flutter.compileSdkVersion\r\n@@ -68,5 +68,6 @@\n }\r\n \r\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n+    implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n }\r\n"
+                },
+                {
+                    "date": 1662632271041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,5 +69,6 @@\n \r\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n     implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n+    implementation 'com.google.firebase:firebase-analytics'\r\n }\r\n"
+                },
+                {
+                    "date": 1662632411963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,6 +69,7 @@\n \r\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n     implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n-    implementation 'com.google.firebase:firebase-analytics'\r\n+    // implementation 'com.google.firebase:firebase-analytics'\r\n+    \r\n }\r\n"
+                },
+                {
+                    "date": 1662632421825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,6 +70,7 @@\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n     implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n     // implementation 'com.google.firebase:firebase-analytics'\r\n-    \r\n+     implementation 'com.google.firebase:firebase-analytics:17.2.2'\r\n }\r\n+apply plugin: 'com.google.gms.google-services'\r\n"
+                },
+                {
+                    "date": 1662632428298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n }\r\n \r\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n-    implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n+    // implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n     // implementation 'com.google.firebase:firebase-analytics'\r\n      implementation 'com.google.firebase:firebase-analytics:17.2.2'\r\n }\r\n apply plugin: 'com.google.gms.google-services'\r\n"
+                },
+                {
+                    "date": 1662634575294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,7 +70,8 @@\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n     // implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n     // implementation 'com.google.firebase:firebase-analytics'\r\n-     implementation 'com.google.firebase:firebase-analytics:17.2.2'\r\n+    //  implementation 'com.google.firebase:firebase-analytics:17.2.2'\r\n+    \r\n }\r\n apply plugin: 'com.google.gms.google-services'\r\n"
+                },
+                {
+                    "date": 1662634584006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,10 +68,11 @@\n }\r\n \r\n dependencies {\r\n     implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n-    // implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n+    implementation platform('com.google.firebase:firebase-bom:30.2.0')\r\n     // implementation 'com.google.firebase:firebase-analytics'\r\n     //  implementation 'com.google.firebase:firebase-analytics:17.2.2'\r\n-    \r\n+    implementation 'com.google.firebase:firebase-analytics'\r\n+\r\n }\r\n apply plugin: 'com.google.gms.google-services'\r\n"
+                },
+                {
+                    "date": 1662637439424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,9 @@\n         applicationId \"com.cleancoders.therapeutic\"\r\n         // You can update the following values to match your application needs.\r\n         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.\r\n         minSdkVersion flutter.minSdkVersion\r\n+        minSdkVersion flutter.minSdkVersion\r\n         targetSdkVersion flutter.targetSdkVersion\r\n         versionCode flutterVersionCode.toInteger()\r\n         versionName flutterVersionName\r\n     }\r\n"
+                },
+                {
+                    "date": 1662637448046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,10 +47,10 @@\n         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).\r\n         applicationId \"com.cleancoders.therapeutic\"\r\n         // You can update the following values to match your application needs.\r\n         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.\r\n-        minSdkVersion flutter.minSdkVersion\r\n-        minSdkVersion flutter.minSdkVersion\r\n+        // minSdkVersion flutter.minSdkVersion\r\n+        minSdkVersion 19\r\n         targetSdkVersion flutter.targetSdkVersion\r\n         versionCode flutterVersionCode.toInteger()\r\n         versionName flutterVersionName\r\n     }\r\n"
+                },
+                {
+                    "date": 1662962872153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,8 +49,9 @@\n         // You can update the following values to match your application needs.\r\n         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.\r\n         // minSdkVersion flutter.minSdkVersion\r\n         minSdkVersion 19\r\n+        minSdkVersion 19\r\n         targetSdkVersion flutter.targetSdkVersion\r\n         versionCode flutterVersionCode.toInteger()\r\n         versionName flutterVersionName\r\n     }\r\n"
+                }
+            ],
+            "date": 1662632240487,
+            "name": "Commit-0",
+            "content": "def localProperties = new Properties()\r\ndef localPropertiesFile = rootProject.file('local.properties')\r\nif (localPropertiesFile.exists()) {\r\n    localPropertiesFile.withReader('UTF-8') { reader ->\r\n        localProperties.load(reader)\r\n    }\r\n}\r\n\r\ndef flutterRoot = localProperties.getProperty('flutter.sdk')\r\nif (flutterRoot == null) {\r\n    throw new GradleException(\"Flutter SDK not found. Define location with flutter.sdk in the local.properties file.\")\r\n}\r\n\r\ndef flutterVersionCode = localProperties.getProperty('flutter.versionCode')\r\nif (flutterVersionCode == null) {\r\n    flutterVersionCode = '1'\r\n}\r\n\r\ndef flutterVersionName = localProperties.getProperty('flutter.versionName')\r\nif (flutterVersionName == null) {\r\n    flutterVersionName = '1.0'\r\n}\r\n\r\napply plugin: 'com.android.application'\r\napply plugin: 'kotlin-android'\r\n\r\napply from: \"$flutterRoot/packages/flutter_tools/gradle/flutter.gradle\"\r\n\r\nandroid {\r\n    compileSdkVersion flutter.compileSdkVersion\r\n    ndkVersion flutter.ndkVersion\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n\r\n    sourceSets {\r\n        main.java.srcDirs += 'src/main/kotlin'\r\n    }\r\n\r\n    defaultConfig {\r\n        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).\r\n        applicationId \"com.cleancoders.therapeutic\"\r\n        // You can update the following values to match your application needs.\r\n        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.\r\n        minSdkVersion flutter.minSdkVersion\r\n        targetSdkVersion flutter.targetSdkVersion\r\n        versionCode flutterVersionCode.toInteger()\r\n        versionName flutterVersionName\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            // TODO: Add your own signing config for the release build.\r\n            // Signing with the debug keys for now, so `flutter run --release` works.\r\n            signingConfig signingConfigs.debug\r\n        }\r\n    }\r\n}\r\n\r\nflutter {\r\n    source '../..'\r\n}\r\n\r\ndependencies {\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n}\r\n"
+        }
+    ]
+}

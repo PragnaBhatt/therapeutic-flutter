@@ -1,0 +1,54 @@
+{
+    "sourceFile": "lib/app/modules/home/views/widgets/type_widget.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1662964652885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662964658195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import 'package:flutter/src/widgets/container.dart';\r\n import 'package:flutter/src/widgets/framework.dart';\r\n \r\n-class MyWidget extends StatelessWidget {\r\n-  const MyWidget({super.key});\r\n+class TypeWidget extends StatelessWidget {\r\n+  const TypeWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Container();\r\n"
+                },
+                {
+                    "date": 1662964663574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,7 @@\n   const TypeWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return Container();\r\n+    return ;\r\n   }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662964671691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n+import 'package:flutter/cupertino.dart';\r\n import 'package:flutter/src/widgets/container.dart';\r\n import 'package:flutter/src/widgets/framework.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n   const TypeWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return ;\r\n+    return Column();\r\n   }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662964761829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import 'package:flutter/src/widgets/container.dart';\r\n import 'package:flutter/src/widgets/framework.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n-  const TypeWidget({super.key});\r\n \r\n+   TypeWidget({super.key});\r\n+\r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return Column();\r\n+    return Column(children: [],);\r\n   }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1662964773192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import 'package:flutter/cupertino.dart';\r\n import 'package:flutter/src/widgets/container.dart';\r\n import 'package:flutter/src/widgets/framework.dart';\r\n+import 'package:therapeutic/app/modules/home/type_model.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n-\r\n+Type \r\n    TypeWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1662964778767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,14 @@\n import 'package:flutter/src/widgets/framework.dart';\r\n import 'package:therapeutic/app/modules/home/type_model.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n-Type \r\n-   TypeWidget({super.key});\r\n+  Type type;\r\n+  TypeWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return Column(children: [],);\r\n\\ No newline at end of file\n+    return Column(\r\n+      children: [],\r\n+    );\r\n   }\r\n-}\n+}\r\n"
+                },
+                {
+                    "date": 1662964784689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import 'package:therapeutic/app/modules/home/type_model.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n   Type type;\r\n-  TypeWidget({super.key});\r\n+  TypeWidget({super.key},this.);\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Column(\r\n"
+                },
+                {
+                    "date": 1662964791952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import 'package:therapeutic/app/modules/home/type_model.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n   Type type;\r\n-  TypeWidget({super.key},this.);\r\n+  TypeWidget({super.key,this.});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Column(\r\n"
+                },
+                {
+                    "date": 1662964799308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import 'package:therapeutic/app/modules/home/type_model.dart';\r\n \r\n class TypeWidget extends StatelessWidget {\r\n   Type type;\r\n-  TypeWidget({super.key,this.});\r\n+  TypeWidget({super.key,required this.type});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Column(\r\n"
+                }
+            ],
+            "date": 1662964652885,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/src/widgets/container.dart';\r\nimport 'package:flutter/src/widgets/framework.dart';\r\n\r\nclass MyWidget extends StatelessWidget {\r\n  const MyWidget({super.key});\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Container();\r\n  }\r\n}"
+        }
+    ]
+}

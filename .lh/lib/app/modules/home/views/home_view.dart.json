@@ -1,0 +1,146 @@
+{
+    "sourceFile": "lib/app/modules/home/views/home_view.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1662962331272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662962342018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n   @override\n   Widget build(BuildContext context) {\n-    controller.\n+    controller\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662962627143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n   @override\n   Widget build(BuildContext context) {\n-    controller\n+    controller.\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662962632421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n   @override\n   Widget build(BuildContext context) {\n-    controller.\n+    controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662962715788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n       ),\n-      body: Center(\n+      body: const Center(\n         child: Text(\n           'HomeView is working',\n           style: TextStyle(fontSize: 20),\n         ),\n"
+                },
+                {
+                    "date": 1662964344513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n import '../controllers/home_controller.dart';\n \n class HomeView extends GetView<HomeController> {\n+  \n   const HomeView({Key? key}) : super(key: key);\n   @override\n   Widget build(BuildContext context) {\n     controller.getTypeData();\n"
+                },
+                {
+                    "date": 1662964350001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,13 @@\n \n import '../controllers/home_controller.dart';\n \n class HomeView extends GetView<HomeController> {\n+\n+  const HomeView({Key? key}) : super(key: key);\n+\n+\n   \n-  const HomeView({Key? key}) : super(key: key);\n   @override\n   Widget build(BuildContext context) {\n     controller.getTypeData();\n     return Scaffold(\n"
+                },
+                {
+                    "date": 1662964539291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,22 +8,17 @@\n \n   const HomeView({Key? key}) : super(key: key);\n \n \n-  \n+\n   @override\n   Widget build(BuildContext context) {\n     controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n       ),\n-      body: const Center(\n-        child: Text(\n-          'HomeView is working',\n-          style: TextStyle(fontSize: 20),\n-        ),\n-      ),\n+      body: ,\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964544956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('HomeView'),\n         centerTitle: true,\n       ),\n-      body: ,\n+      body: Column(children: []),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964557527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   Widget build(BuildContext context) {\n     controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n-        title: const Text('HomeView'),\n+        title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n       body: Column(children: []),\n     );\n"
+                },
+                {
+                    "date": 1662964577278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: []),\n+      body: Column(children: [l]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964584596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [l]),\n+      body: Column(children: [GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964597781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)]),\n+      body: Column(children: [GridView.builder(gridDelegate: sil, itemBuilder: itemBuilder)]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964603961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: sil, itemBuilder: itemBuilder)]),\n+      body: Column(children: [GridView.builder(gridDelegate: silv, itemBuilder: itemBuilder)]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964611401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: silv, itemBuilder: itemBuilder)]),\n+      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount, itemBuilder: itemBuilder)]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964624192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount, itemBuilder: itemBuilder)]),\n+      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: ), itemBuilder: itemBuilder)]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964636876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: ), itemBuilder: itemBuilder)]),\n+      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx))]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964644434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx))]),\n+      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx,pos){return })]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964683690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx,pos){return })]),\n+      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx,pos){return type})]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964690747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,29 @@\n import 'package:flutter/material.dart';\n \n import 'package:get/get.dart';\n+import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\n \n import '../controllers/home_controller.dart';\n \n class HomeView extends GetView<HomeController> {\n-\n   const HomeView({Key? key}) : super(key: key);\n \n-\n-\n   @override\n   Widget build(BuildContext context) {\n     controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n       ),\n-      body: Column(children: [GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (ctx,pos){return type})]),\n+      body: Column(children: [\n+        GridView.builder(\n+            gridDelegate:\n+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),\n+            itemBuilder: (ctx, pos) {\n+              return TypeWidget();\n+            })\n+      ]),\n     );\n   }\n }\n"
+                },
+                {
+                    "date": 1662964699202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         GridView.builder(\n             gridDelegate:\n                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),\n             itemBuilder: (ctx, pos) {\n-              return TypeWidget();\n+              return TypeWidget(Type);\n             })\n       ]),\n     );\n   }\n"
+                },
+                {
+                    "date": 1662964718261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         GridView.builder(\n             gridDelegate:\n                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),\n             itemBuilder: (ctx, pos) {\n-              return TypeWidget(Type);\n+              return TypeWidget();\n             })\n       ]),\n     );\n   }\n"
+                },
+                {
+                    "date": 1662964731727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import 'package:get/get.dart';\n import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\n \n import '../controllers/home_controller.dart';\n+import '../controllers/home_controller.dart';\n \n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n \n@@ -20,9 +21,9 @@\n         GridView.builder(\n             gridDelegate:\n                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),\n             itemBuilder: (ctx, pos) {\n-              return TypeWidget();\n+              return TypeWidget(ty);\n             })\n       ]),\n     );\n   }\n"
+                },
+                {
+                    "date": 1662964741466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import 'package:get/get.dart';\n import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\n \n import '../controllers/home_controller.dart';\n-import '../controllers/home_controller.dart';\n+import '../type_model.dart';\n \n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n \n"
+                },
+                {
+                    "date": 1662964747568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import 'package:get/get.dart';\n import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\n \n import '../controllers/home_controller.dart';\n-import '../type_model.dart';\n \n class HomeView extends GetView<HomeController> {\n   const HomeView({Key? key}) : super(key: key);\n \n"
+                },
+                {
+                    "date": 1662964806447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         GridView.builder(\n             gridDelegate:\n                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),\n             itemBuilder: (ctx, pos) {\n-              return TypeWidget(ty);\n+              return TypeWidget();\n             })\n       ]),\n     );\n   }\n"
+                },
+                {
+                    "date": 1662964819880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n-    controller.getTypeData();\n+  ty  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662964826531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import 'package:flutter/material.dart';\n \n import 'package:get/get.dart';\n+import 'package:therapeutic/app/modules/home/type_model.dart';\n import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\n \n import '../controllers/home_controller.dart';\n \n@@ -9,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n-  ty  controller.getTypeData();\n+  Type typeData=  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662964974622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n-  Type typeData=  controller.getTypeData();\n+ List Type typeData=  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662964988078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n- List Type typeData=  controller.getTypeData();\n+ List< Type> typeData=  controller.getTypeData() as List<Type>;\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662964993717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n- List< Type> typeData=  controller.getTypeData() as List<Type>;\n+ List Type typeData=  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662964999347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n- List Type typeData=  controller.getTypeData();\n+ List <Type typeData=  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                },
+                {
+                    "date": 1662965026526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const HomeView({Key? key}) : super(key: key);\n \n   @override\n   Widget build(BuildContext context) {\n- List <Type typeData=  controller.getTypeData();\n+ List <typ typeData=  controller.getTypeData();\n     return Scaffold(\n       appBar: AppBar(\n         title: const Text('Dashboard'),\n         centerTitle: true,\n"
+                }
+            ],
+            "date": 1662962331272,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\n\nimport 'package:get/get.dart';\n\nimport '../controllers/home_controller.dart';\n\nclass HomeView extends GetView<HomeController> {\n  const HomeView({Key? key}) : super(key: key);\n  @override\n  Widget build(BuildContext context) {\n    controller.\n    return Scaffold(\n      appBar: AppBar(\n        title: const Text('HomeView'),\n        centerTitle: true,\n      ),\n      body: Center(\n        child: Text(\n          'HomeView is working',\n          style: TextStyle(fontSize: 20),\n        ),\n      ),\n    );\n  }\n}\n"
+        }
+    ]
+}

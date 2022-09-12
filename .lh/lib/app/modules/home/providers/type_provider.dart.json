@@ -1,0 +1,146 @@
+{
+    "sourceFile": "lib/app/modules/home/providers/type_provider.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1662962030925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662962175868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n+    \n     return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962182627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    \n+    if(response.)\n     return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962188679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    if(response.)\n+    if(response.body.s)\n     return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962194475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    if(response.body.s)\n+    if(response.sta)\n     return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962201060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    if(response.sta)\n+    if(response.statusCode==200)\n+    {\n     return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962207415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,12 @@\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    if(response.statusCode==200)\n-    {\n-    return response.body;\n+    if (response.statusCode == 200) {\n+      return response.body;\n+    }\n+    else\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n   Future<Response> deleteType(int id) async => await delete('type/$id');\n"
+                },
+                {
+                    "date": 1662962214288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,11 @@\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n       return response.body;\n     }\n-    else\n+    else{\n+      thro\n+    }\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n   Future<Response> deleteType(int id) async => await delete('type/$id');\n"
+                },
+                {
+                    "date": 1662962219473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     if (response.statusCode == 200) {\n       return response.body;\n     }\n     else{\n-      thro\n+      throw new Ex\n     }\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n"
+                },
+                {
+                    "date": 1662962225676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,11 @@\n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n       return response.body;\n+    } else {\n+      throw new Exception();\n     }\n-    else{\n-      throw new Ex\n-    }\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n   Future<Response> deleteType(int id) async => await delete('type/$id');\n"
+                },
+                {
+                    "date": 1662962249834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n+      print(\"response.... \")\n       return response.body;\n     } else {\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662962257983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n-      print(\"response.... \")\n+      print(\"response....  response);\n       return response.body;\n     } else {\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662962264543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n-      print(\"response....  response);\n+      print(\"response.... ${ response}\");\n       return response.body;\n     } else {\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662962272535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     if (response.statusCode == 200) {\n       print(\"response.... ${ response}\");\n       return response.body;\n     } else {\n+      \n       throw new Exception();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1662962282472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     if (response.statusCode == 200) {\n       print(\"response.... ${ response}\");\n       return response.body;\n     } else {\n-      \n+       print(\"response  not found ${response}\");\n       throw new Exception();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1662962291748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,12 @@\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n     if (response.statusCode == 200) {\n-      print(\"response.... ${ response}\");\n+      print(\"getType response.... ${ response}\");\n       return response.body;\n     } else {\n-       print(\"response  not found ${response}\");\n+       print(\"response  not found\");\n       throw new Exception();\n     }\n   }\n \n"
+                },
+                {
+                    "date": 1662963171702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,14 @@\n     httpClient.defaultDecoder = (map) {\n       if (map is Map<String, dynamic>) return Type.fromJson(map);\n       if (map is List) return map.map((item) => Type.fromJson(item)).toList();\n     };\n-    httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n+    httpClient.baseUrl = 'YOUR-API-URL';\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    if (response.statusCode == 200) {\n-      print(\"getType response.... ${ response}\");\n-      return response.body;\n-    } else {\n-       print(\"response  not found\");\n-      throw new Exception();\n-    }\n+    return response.body;\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n   Future<Response> deleteType(int id) async => await delete('type/$id');\n"
+                },
+                {
+                    "date": 1662963179137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,20 @@\n     httpClient.defaultDecoder = (map) {\n       if (map is Map<String, dynamic>) return Type.fromJson(map);\n       if (map is List) return map.map((item) => Type.fromJson(item)).toList();\n     };\n-    httpClient.baseUrl = 'YOUR-API-URL';\n+    httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n   Future<Type?> getType(int id) async {\n     final response = await get('type/$id');\n-    return response.body;\n+    if (response.statusCode == 200) {\n+      print(\"getType response.... ${response}\");\n+      return response.body;\n+    } else {\n+      print(\"getType response  not found\");\n+      throw new Exception();\n+    }\n   }\n \n   Future<Response<Type>> postType(Type type) async => await post('type', type);\n   Future<Response> deleteType(int id) async => await delete('type/$id');\n"
+                },
+                {
+                    "date": 1662963264701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n   Future<Type?> getType(int id) async {\n-    final response = await get('type/$id');\n+    final response = await get(htt);\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n       return response.body;\n     } else {\n"
+                },
+                {
+                    "date": 1662963278586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n   Future<Type?> getType(int id) async {\n-    final response = await get(htt);\n+    final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n       return response.body;\n     } else {\n"
+                },
+                {
+                    "date": 1662963324492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n-      return response.body;\n+      return   response.body;\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963330163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import 'dart:convert';\n+\n import 'package:get/get.dart';\n \n import '../type_model.dart';\n \n@@ -15,9 +17,9 @@\n   Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n-      return   response.body;\n+      return  json.decoder response.body;\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963338198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n-      return  json.decoder response.body;\n+      return  json.decode( response.body);\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963367388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n-      return  json.decode( response.body);\n+      return  json.encode( response.body);\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963375437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     };\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n-  Future<Type?> getType(int id) async {\n+  Future<String> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n       return  json.encode( response.body);\n"
+                },
+                {
+                    "date": 1662963396337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,13 @@\n     };\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n-  Future<String> getType(int id) async {\n+  Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response}\");\n-      return  json.encode( response.body);\n+      return  json.decode( response.body.);\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963405026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,10 @@\n \n   Future<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n-      print(\"getType response.... ${response}\");\n-      return  json.decode( response.body.);\n+      print(\"getType response.... ${response.body}\");\n+      return  json.decode( response.body);\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963440309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     };\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n-  Future<Type?> getType(int id) async {\n+  Future<List<Type?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n       return  json.decode( response.body);\n"
+                },
+                {
+                    "date": 1662963464562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,13 @@\n     };\n     httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n   }\n \n-  Future<List<Type?> getType(int id) async {\n+  Future<List<Type>?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n-      return  json.decode( response.body);\n+      return  response.body);\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963565212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n   Future<List<Type>?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n-      return  response.body);\n+      return  \n+      \n+      response.body;\n     } else {\n       print(\"getType response  not found\");\n       throw new Exception();\n     }\n"
+                },
+                {
+                    "date": 1662963571768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   Future<List<Type>?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n-      return  \n+      return  response.\n       \n       response.body;\n     } else {\n       print(\"getType response  not found\");\n"
+                },
+                {
+                    "date": 1662963580747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   Future<List<Type>?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n-      return  response\n+      return  response.\n       \n      \n     } else {\n       print(\"getType response  not found\");\n"
+                },
+                {
+                    "date": 1662963615206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   Future<List<Type>?> getType(int id) async {\n     final response = await get('http://192.168.30.222:5000/food/fetchFoodTypes');\n     if (response.statusCode == 200) {\n       print(\"getType response.... ${response.body}\");\n-      return  (response.body as List).map((e) => Type)\n+      return  (response.body as List).map((e) => Type.)\n       \n      \n     } else {\n       print(\"getType response  not found\");\n"
+                }
+            ],
+            "date": 1662962030925,
+            "name": "Commit-0",
+            "content": "import 'package:get/get.dart';\n\nimport '../type_model.dart';\n\nclass TypeProvider extends GetConnect {\n  @override\n  void onInit() {\n    httpClient.defaultDecoder = (map) {\n      if (map is Map<String, dynamic>) return Type.fromJson(map);\n      if (map is List) return map.map((item) => Type.fromJson(item)).toList();\n    };\n    httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';\n  }\n\n  Future<Type?> getType(int id) async {\n    final response = await get('type/$id');\n    return response.body;\n  }\n\n  Future<Response<Type>> postType(Type type) async => await post('type', type);\n  Future<Response> deleteType(int id) async => await delete('type/$id');\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "android/build.gradle",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1662632135257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1662632352014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n     dependencies {\r\n         classpath 'com.android.tools.build:gradle:7.1.2'\r\n         classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n         classpath 'com.google.gms:google-services:4.3.13'\r\n+        classpath 'com.google.gms:google-services:4.3.3'\r\n+\r\n     }\r\n }\r\n \r\n allprojects {\r\n"
+                },
+                {
+                    "date": 1662634502713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n \r\n     dependencies {\r\n         classpath 'com.android.tools.build:gradle:7.1.2'\r\n         classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n-        classpath 'com.google.gms:google-services:4.3.13'\r\n-        classpath 'com.google.gms:google-services:4.3.3'\r\n+        // classpath 'com.google.gms:google-services:4.3.13'\r\n+        // classpath 'com.google.gms:google-services:4.3.3'\r\n \r\n     }\r\n }\r\n \r\n"
+                }
+            ],
+            "date": 1662632135257,
+            "name": "Commit-0",
+            "content": "buildscript {\r\n    ext.kotlin_version = '1.6.10'\r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n    }\r\n\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:7.1.2'\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n        classpath 'com.google.gms:google-services:4.3.13'\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n    }\r\n}\r\n\r\nrootProject.buildDir = '../build'\r\nsubprojects {\r\n    project.buildDir = \"${rootProject.buildDir}/${project.name}\"\r\n}\r\nsubprojects {\r\n    project.evaluationDependsOn(':app')\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n"
+        }
+    ]
+}
