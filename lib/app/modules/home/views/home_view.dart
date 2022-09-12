@@ -11,9 +11,10 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Future< List<type.Type>> typeData=   controller.getTypeData();
+    Future< List<type.Data>> typeData=   controller.getTypeData();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Dashboard'),
         centerTitle: true,
@@ -21,14 +22,40 @@ class HomeView extends GetView<HomeController> {
       body: FutureBuilder(
         future: typeData,
         builder: (context,snapData) {
-          return Column(children: [
-            GridView.builder(
-                gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemBuilder: (ctx, pos) {
-                  return TypeWidget(type: snapData.data![pos],);
-                })
-          ]);
+          // print(snapData.data[0].i);
+
+          if (snapData.hasError) {
+            return Text("error");
+          }
+        else  if (snapData.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+            return
+            snapData!.data!.length>0?
+
+            Column(children: [
+              SizedBox(height: 10,),
+              Container(
+
+                height: 200,
+                child: GridView.builder(
+                    itemCount: snapData.data!.length,
+                    gridDelegate:
+                    SliverGridDelegateWithFixedCrossAxisCount(
+
+                        crossAxisCount: 4,crossAxisSpacing: 2,mainAxisSpacing: 2),
+                    itemBuilder: (ctx, pos) {
+
+                      return TypeWidget(type:snapData.data![pos]!);
+                    }),
+              )
+            ])
+          :
+
+
+           Container();
+
         }
       ),
     );

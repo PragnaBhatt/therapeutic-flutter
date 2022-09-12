@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:therapeutic/app/modules/home/providers/type_provider.dart';
-import 'package:therapeutic/app/modules/home/type_model.dart';
+import 'package:therapeutic/app/modules/home/type_model.dart' as typeData;
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
-  Future<List<Type>> getTypeData() {
+  Future<List<typeData.Data>> getTypeData() {
    return  typeProvider!.getType();
   }
 }
