@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
+import 'package:therapeutic/app/modules/login/models/login_model.dart';
+import 'package:therapeutic/app/modules/login/provider/login_provider.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
+  LoginProvider? loginProvider;
 
-  final count = 0.obs;
   @override
   void onInit() {
+    loginProvider = LoginProvider();
     super.onInit();
   }
 
@@ -19,5 +22,8 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<LoginModel> doLogin(String email, String password) {
+    print("login api called...");
+    return loginProvider!.loginUser(email, password);
+  }
 }

@@ -13,6 +13,18 @@ dependencies:
   firebase_auth: ^3.7.0
   google_sign_in: ^5.4.1
   glassmorphism: ^3.0.0
+  http: ^0.13.5
+  flutter_html: ^2.2.1
+  animated_bottom_navigation_bar: ^1.1.0
+  kf_drawer: ^1.2.1
+  shared_preferences: ^2.0.15
+  fluttertoast: ^8.0.9
+  connectivity: ^3.0.6
+  permission_handler: ^10.0.0
+  images_picker: ^1.2.11
+  image_picker: ^0.8.5+3
+  lottie: ^1.4.3
+  firebase_core: ^1.22.0
 
 dev_dependencies: 
   flutter_lints: 2.0.1
