@@ -22,7 +22,7 @@ class TypeWidget extends StatelessWidget {
       elevation: 5,
       child: Center(
         child: Container(
-          height: 200,
+          height: 100,
           child: InkWell(
             onTap: (){Get.toNamed(Routes.PRODUCT_LIST,arguments: type.name);},
             child: Column(

@@ -14,7 +14,7 @@ class HomeWidget extends StatelessWidget {
             ? Column(
                 children: [
                   Container(
-                    height: 300,
+                    height: 120,
                     child: GridView.builder(
                         itemCount: snapData.data![0].length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -25,7 +25,7 @@ class HomeWidget extends StatelessWidget {
                           return TypeWidget(type: snapData.data![0][pos]!);
                         }),
                   ),
-                  Text("data"),
+                //  Text("Top"),
                   ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

@@ -14,7 +14,7 @@ class AppPages {
   AppPages._();
 
   // static const INITIAL = Routes.LOGIN;
-  static const INITIAL = Routes.KEY_TEST;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(

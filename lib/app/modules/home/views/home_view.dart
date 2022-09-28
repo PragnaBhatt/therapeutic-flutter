@@ -4,15 +4,11 @@ import 'package:get/get.dart';
 import 'package:therapeutic/app/modules/home/type_model.dart' as type;
 import 'package:therapeutic/app/modules/home/views/widgets/home_widget.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/tab_widget.dart';
-import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';
-
 import '../controllers/home_controller.dart';
 import 'package:therapeutic/app/modules/models/product_model.dart'
     as productModel;
-
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Future<List<type.Data>> typeData = controller.getTypeData();
