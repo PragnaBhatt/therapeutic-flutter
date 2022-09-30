@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('Dashboard'),
           centerTitle: true,
@@ -28,6 +28,7 @@ class HomeView extends GetView<HomeController> {
           child: TabWidget(),
         ),
         body: SafeArea(
+
           child: TabBarView(
             children: [
               FutureBuilder(

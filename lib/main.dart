@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:therapeutic/app/constants/color_constants.dart';
 
 import 'app/commons/utils/custom_error.dart';
+import 'app/config/theme/app_theme.dart';
 import 'app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -44,10 +45,12 @@ void main() async {
   runApp(
     GetMaterialApp(
       //  color: CupertinoColors.separator,
-      theme: _buildTheme(Brightness.dark),
+    //  theme: _buildTheme(Brightness.dark),
       title: "Application",
       initialRoute: AppPages.INITIAL,
-
+      theme: AppTheme.dark,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.light,
       getPages: AppPages.routes,
     ),
   );

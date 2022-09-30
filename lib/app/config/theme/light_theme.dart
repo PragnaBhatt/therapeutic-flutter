@@ -4,10 +4,8 @@ import 'package:therapeutic/app/constants/color_constants.dart';
 
 ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(
-    primary: ColorConstants.colorPrimary, //primary dark
-    primaryVariant: ColorConstants.colorPrimary, //primary
+    primary: ColorConstants.colorPrimary, //primary
     secondary: ColorConstants.colorAccent,
-    secondaryVariant: ColorConstants.colorAccent,
     background: ColorConstants.colorCanvas,
     error: Colors.red,
     brightness: Brightness.light,
