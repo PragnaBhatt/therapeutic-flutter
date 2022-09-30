@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:therapeutic/app/constants/color_constants.dart';
 
 import 'app/commons/utils/custom_error.dart';
 import 'app/routes/app_pages.dart';
@@ -37,11 +40,37 @@ void main() async {
       errorDetails: details,
     );
   };
+  // WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
+      //  color: CupertinoColors.separator,
+      theme: _buildTheme(Brightness.dark),
       title: "Application",
       initialRoute: AppPages.INITIAL,
+
       getPages: AppPages.routes,
     ),
   );
 }
+
+ThemeData _buildTheme(brightness) {
+  var baseTheme = ThemeData(brightness: brightness,
+    primaryColor: ColorConstants.colorPrimary1,
+  );
+
+  return baseTheme.copyWith(
+    textTheme: GoogleFonts.biryaniTextTheme(baseTheme.textTheme),
+  );
+}
+/*ThemeData _buildTheme(brightness) {
+  var baseTheme = ThemeData(
+      brightness: brightness,
+      // primaryColor: ColorConstants.colorPrimary1,
+
+      colorScheme: ColorScheme.fromSwatch()
+          .copyWith(secondary: ColorConstants.colorPrimary1));
+
+  return baseTheme.copyWith(
+    textTheme: GoogleFonts.biryaniTextTheme(baseTheme.textTheme),
+  );
+}*/

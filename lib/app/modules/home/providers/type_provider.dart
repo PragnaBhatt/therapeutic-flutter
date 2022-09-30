@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:therapeutic/app/modules/models/product_detail_model.dart';
@@ -17,7 +16,8 @@ class TypeProvider extends GetConnect {
     //   if (map is Map<String, dynamic>) return type.fromJson(map);
     //   if (map is List) return map.map((item) => TypeModel.fromJson(item)).toList();
     // };
-    httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';
+    // httpClient.baseUrl = 'http://192.168.30.222:5000/food/fetchFoodTypes';
+    //httpClient.baseUrl = Config.baseUrl+'fetchFoodTypes';
   }
 
   Future<List<typeData.Data>> getType() async {
