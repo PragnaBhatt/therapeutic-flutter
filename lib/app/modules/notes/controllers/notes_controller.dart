@@ -8,7 +8,7 @@ import '../models/delete_note_model.dart';
 class NotesController extends GetxController {
   //TODO: Implement NotesController
   NotesProvider? notesProvide;
-  late RxList<notesModel.AllNote> allNotes;
+  // late RxList<notesModel.AllNote> allNotes;
 
   @override
   void onInit() {
@@ -28,7 +28,7 @@ class NotesController extends GetxController {
 
   Future<List<notesModel.AllNote>> getNotes() {
 
-    allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;
+    // allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;
     return notesProvide!.getAllNotes();
   }
 
