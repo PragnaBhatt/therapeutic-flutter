@@ -1,0 +1,34 @@
+{
+    "sourceFile": "lib/app/commons/widgets/custom_widget.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1664600459805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664600551224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         overflow: TextOverflow.ellipsis,\r\n         softWrap: true,\r\n         maxLines: customMaxlines,\r\n         style: TextStyle(\r\n-          color: customColor,\r\n+         // color: customColor,\r\n           fontSize: customFontsize,\r\n         ),\r\n       ),\r\n     );\r\n@@ -45,9 +45,9 @@\n           },\r\n           child: customTextWidget(\r\n               dataToPrint: btnLbl,\r\n               customAlignment: customAlignment,\r\n-              customColor: ColorConstants.color_white)),\r\n+           )),\r\n     );\r\n   }\r\n   \r\n   static Widget noInternetWidget(\r\n"
+                },
+                {
+                    "date": 1664600563805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   static Widget customTextWidget({\r\n     required dataToPrint,\r\n     customFontsize = SizeConstants.FONT_SIZE,\r\n     customAlignment = Alignment.centerLeft,\r\n-   // customColor = ColorConstants.color_font,\r\n+    customColor = ColorConstants.color_font,\r\n     customMaxlines = 2,\r\n     customMinLines = 2,\r\n   }) {\r\n     return Align(\r\n@@ -21,9 +21,9 @@\n         overflow: TextOverflow.ellipsis,\r\n         softWrap: true,\r\n         maxLines: customMaxlines,\r\n         style: TextStyle(\r\n-         // color: customColor,\r\n+          color: customColor,\r\n           fontSize: customFontsize,\r\n         ),\r\n       ),\r\n     );\r\n@@ -45,9 +45,9 @@\n           },\r\n           child: customTextWidget(\r\n               dataToPrint: btnLbl,\r\n               customAlignment: customAlignment,\r\n-           )),\r\n+              customColor: ColorConstants.color_white)),\r\n     );\r\n   }\r\n   \r\n   static Widget noInternetWidget(\r\n"
+                },
+                {
+                    "date": 1664600589456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   static Widget customTextWidget({\r\n     required dataToPrint,\r\n     customFontsize = SizeConstants.FONT_SIZE,\r\n     customAlignment = Alignment.centerLeft,\r\n-    customColor = ColorConstants.color_font,\r\n+    customColor = ColorConstants.,\r\n     customMaxlines = 2,\r\n     customMinLines = 2,\r\n   }) {\r\n     return Align(\r\n"
+                },
+                {
+                    "date": 1664600595565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   static Widget customTextWidget({\r\n     required dataToPrint,\r\n     customFontsize = SizeConstants.FONT_SIZE,\r\n     customAlignment = Alignment.centerLeft,\r\n-    customColor = ColorConstants.,\r\n+    customColor = ColorConstants.colorAccent,\r\n     customMaxlines = 2,\r\n     customMinLines = 2,\r\n   }) {\r\n     return Align(\r\n"
+                }
+            ],
+            "date": 1664600459805,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:lottie/lottie.dart';\r\nimport '../../constants/color_constants.dart';\r\n\r\nimport '../../constants/size_constants.dart';\r\n\r\nclass CustomWidgets {\r\n  static Widget customTextWidget({\r\n    required dataToPrint,\r\n    customFontsize = SizeConstants.FONT_SIZE,\r\n    customAlignment = Alignment.centerLeft,\r\n   // customColor = ColorConstants.color_font,\r\n    customMaxlines = 2,\r\n    customMinLines = 2,\r\n  }) {\r\n    return Align(\r\n      alignment: customAlignment,\r\n      child: Text(\r\n        dataToPrint,\r\n        overflow: TextOverflow.ellipsis,\r\n        softWrap: true,\r\n        maxLines: customMaxlines,\r\n        style: TextStyle(\r\n          color: customColor,\r\n          fontSize: customFontsize,\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  static Function? customClickEvent;\r\n  static Widget customButtonWidget(\r\n      {required btnLbl,\r\n      customFontsize = SizeConstants.FONT_SIZE,\r\n      customAlignment = Alignment.center,\r\n      onCustomClick}) {\r\n    return Align(\r\n      alignment: customAlignment,\r\n      child: ElevatedButton(\r\n          onPressed: () {\r\n            // onCustomClick();\r\n            print(\"on clicked...\");\r\n            //   Navigator.pop(context);\r\n          },\r\n          child: customTextWidget(\r\n              dataToPrint: btnLbl,\r\n              customAlignment: customAlignment,\r\n              customColor: ColorConstants.color_white)),\r\n    );\r\n  }\r\n  \r\n  static Widget noInternetWidget(\r\n      {required image,\r\n      required title,\r\n      required description,\r\n      required buttonText,\r\n      required onPressed}) {\r\n    return   Container(\r\n      margin: EdgeInsets.only(left: 16, right: 16),\r\n      child: Center(\r\n        child: SingleChildScrollView(\r\n          child: Column(\r\n            children: [\r\n              Lottie.asset(\r\n                image,\r\n                height: 250,\r\n                width: 250,\r\n              ),\r\n              SizedBox(\r\n                height: 10,\r\n              ),\r\n              Text(\r\n                title,\r\n               style: TextStyle(fontSize: 16),\r\n              ),\r\n              SizedBox(\r\n                height: 4,\r\n              ),\r\n              Text(\r\n                description,\r\n                style: TextStyle(fontSize: 14),\r\n              ),\r\n              SizedBox(\r\n                height: 8,\r\n              ),\r\n              ElevatedButton(\r\n              \r\n                onPressed: onPressed,\r\n                child: Text(buttonText),\r\n              )\r\n            ],\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n"
+        }
+    ]
+}

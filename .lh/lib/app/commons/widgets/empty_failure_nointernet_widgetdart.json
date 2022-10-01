@@ -1,0 +1,26 @@
+{
+    "sourceFile": "lib/app/commons/widgets/empty_failure_nointernet_widgetdart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1664601846095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664601852326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     );\r\n       }\r\n \r\n \r\n-       static Widget InternetWidget(\r\n+       static Widget Empty(\r\n       {required this.image,\r\n       required this.title,\r\n       required this.description,\r\n       required this.buttonText,\r\n"
+                },
+                {
+                    "date": 1664601859470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     );\r\n       }\r\n \r\n \r\n-       static Widget Empty(\r\n+       static Widget EmptyWidget(\r\n       {required this.image,\r\n       required this.title,\r\n       required this.description,\r\n       required this.buttonText,\r\n"
+                }
+            ],
+            "date": 1664601846095,
+            "name": "Commit-0",
+            "content": "\r\nimport 'package:flutter/material.dart';\r\nimport 'package:lottie/lottie.dart';\r\n\r\n class EmptyFailureNoInternetWidget  {\r\n  static Widget InternetWidget(\r\n      {required this.image,\r\n      required this.title,\r\n      required this.description,\r\n      required this.buttonText,\r\n      required this.onPressed}{\r\n\r\n  // final String title, description, buttonText, image;\r\n  // final VoidCallback onPressed;\r\n\r\n return Container(\r\n      margin: EdgeInsets.only(left: 16, right: 16),\r\n      child: Center(\r\n        child: SingleChildScrollView(\r\n          child: Column(\r\n            children: [\r\n              Lottie.asset(\r\n                image,\r\n                height: 250,\r\n                width: 250,\r\n              ),\r\n              SizedBox(\r\n                height: 10,\r\n              ),\r\n              Text(\r\n                title,\r\n               style: TextStyle(fontSize: 16),\r\n              ),\r\n              SizedBox(\r\n                height: 4,\r\n              ),\r\n              Text(\r\n                description,\r\n                style: TextStyle(fontSize: 14),\r\n              ),\r\n              SizedBox(\r\n                height: 8,\r\n              ),\r\n              ElevatedButton(\r\n              \r\n                onPressed: onPressed,\r\n                child: Text(buttonText),\r\n              )\r\n            ],\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n      }\r\n\r\n\r\n       static Widget InternetWidget(\r\n      {required this.image,\r\n      required this.title,\r\n      required this.description,\r\n      required this.buttonText,\r\n      required this.onPressed}{\r\n\r\n  // final String title, description, buttonText, image;\r\n  // final VoidCallback onPressed;\r\n\r\n return Container(\r\n      margin: EdgeInsets.only(left: 16, right: 16),\r\n      child: Center(\r\n        child: SingleChildScrollView(\r\n          child: Column(\r\n            children: [\r\n              Lottie.asset(\r\n                image,\r\n                height: 250,\r\n                width: 250,\r\n              ),\r\n              SizedBox(\r\n                height: 10,\r\n              ),\r\n              Text(\r\n                title,\r\n               style: TextStyle(fontSize: 16),\r\n              ),\r\n              SizedBox(\r\n                height: 4,\r\n              ),\r\n              Text(\r\n                description,\r\n                style: TextStyle(fontSize: 14),\r\n              ),\r\n              SizedBox(\r\n                height: 8,\r\n              ),\r\n              ElevatedButton(\r\n              \r\n                onPressed: onPressed,\r\n                child: Text(buttonText),\r\n              )\r\n            ],\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n      }\r\n}\r\n"
+        }
+    ]
+}

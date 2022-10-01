@@ -1,0 +1,26 @@
+{
+    "sourceFile": "lib/app/modules/notes/widgets/add_notes_widget.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1664602992748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664603002064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,11 @@\n-stle\n\\ No newline at end of file\n+import 'package:flutter/src/widgets/container.dart';\r\n+import 'package:flutter/src/widgets/framework.dart';\r\n+\r\n+class AddNote extends StatelessWidget {\r\n+  const AddNote({super.key});\r\n+\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Container();\r\n+  }\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1664603024135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n+import 'package:flutter/cupertino.dart';\r\n import 'package:flutter/src/widgets/container.dart';\r\n import 'package:flutter/src/widgets/framework.dart';\r\n \r\n-class AddNote extends StatelessWidget {\r\n-  const AddNote({super.key});\r\n+class AddNoteWidget extends StatelessWidget {\r\n+  const AddNoteWidget({super.key});\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return Container();\r\n+    return Container(child: Column,);\r\n   }\r\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1664602992748,
+            "name": "Commit-0",
+            "content": "stle"
+        }
+    ]
+}

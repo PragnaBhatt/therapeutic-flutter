@@ -1,0 +1,58 @@
+{
+    "sourceFile": "lib/app/modules/notes/providers/notes_provider.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1664601422747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664601429069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n         DeleteNoteModel note = DeleteNoteModel.fromJson(jsonData);\n         print(note.message);\n         return note;\n       } else {\n-        throw new Exception;\n+        throw new Exception(m);\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601437521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n         DeleteNoteModel note = DeleteNoteModel.fromJson(jsonData);\n         print(note.message);\n         return note;\n       } else {\n-        throw new Exception(m);\n+        throw new Exception(jsonData['message']);\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601511136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,8 +59,10 @@\n         print(note.message);\n         return note;\n       } else {\n         throw new Exception(jsonData['message']);\n+\n+        \n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601518540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import 'dart:convert';\n \n import 'package:get/get.dart';\n import 'package:http/http.dart' as http;\n+import 'package:therapeutic/app/commons/utils/dialogs.dart';\n import 'package:therapeutic/app/modules/notes/models/notes_model.dart'\n     as notesModel;\n \n import '../../../config/config.dart';\n@@ -60,9 +61,9 @@\n         return note;\n       } else {\n         throw new Exception(jsonData['message']);\n \n-        \n+        CommonDialogs.\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601535812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n         return note;\n       } else {\n         throw new Exception(jsonData['message']);\n \n-        CommonDialogs.\n+        CommonDialogs.showToast(ctx: ctx)\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601544570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n         return note;\n       } else {\n         throw new Exception(jsonData['message']);\n \n-        CommonDialogs.showToast(ctx: ctx)\n+       CommonDialogs.\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601556086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,16 +15,14 @@\n   @override\n   void onInit() {\n     httpClient.baseUrl = 'YOUR-API-URL';\n   }\n+\n   Future<List<notesModel.AllNote>> getAllNotes() async {\n-\n-    var headers = {\n-      'Authorization':\n-      Config.token\n-    };\n+    var headers = {'Authorization': Config.token};\n     return await http\n-        .get(Uri.parse(Config.baseUrl + urlToAppend+\"getAllNotes\"), headers: headers)\n+        .get(Uri.parse(Config.baseUrl + urlToAppend + \"getAllNotes\"),\n+            headers: headers)\n         .then((value) {\n       print(\"notes response... ${value.body}\");\n       print(\"${json.encode(value.body)}\");\n       var jsonData = json.decode(value.body);\n@@ -39,16 +37,16 @@\n       } else {\n         throw new Exception();\n       }\n     });\n-  }Future<DeleteNoteModel> deleteNote(String noteId) async {\n+  }\n \n-    var headers = {\n-      'Authorization':\n-      Config.token\n-    };\n+  Future<DeleteNoteModel> deleteNote(String noteId) async {\n+    var headers = {'Authorization': Config.token};\n     return await http\n-        .delete(Uri.parse(Config.baseUrl + urlToAppend+\"deleteNote/\"+noteId), headers: headers)\n+        .delete(\n+            Uri.parse(Config.baseUrl + urlToAppend + \"deleteNote/\" + noteId),\n+            headers: headers)\n         .then((value) {\n       print(\"deleteNote response... ${value.body}\");\n       print(\"${json.encode(value.body)}\");\n       var jsonData = json.decode(value.body);\n@@ -61,9 +59,9 @@\n         return note;\n       } else {\n         throw new Exception(jsonData['message']);\n \n-       CommonDialogs.\n+        CommonDialogs.showGetMessage(msg: jsonData['message']);\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601561217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,11 +57,12 @@\n         DeleteNoteModel note = DeleteNoteModel.fromJson(jsonData);\n         print(note.message);\n         return note;\n       } else {\n-        throw new Exception(jsonData['message']);\n+        \n \n         CommonDialogs.showGetMessage(msg: jsonData['message']);\n+        throw new Exception(jsonData['message']);\n       }\n     });\n   }\n }\n"
+                },
+                {
+                    "date": 1664601644795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n         print(notes.message);\n         // allNotes.value=notes!.allNote!;\n         return notes!.allNote!;\n       } else {\n+          CommonDialogs.showGetMessage(msg: jsonData['message']);\n         throw new Exception();\n       }\n     });\n   }\n"
+                },
+                {
+                    "date": 1664601655236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         print(\"value.statusCode ${value.statusCode}\");\n         notesModel.NotesModel notes = notesModel.NotesModel.fromJson(jsonData);\n         print(notes.message);\n         // allNotes.value=notes!.allNote!;\n-        return notes!.allNote!;\n+        return notes.allNote!;\n       } else {\n           CommonDialogs.showGetMessage(msg: jsonData['message']);\n         throw new Exception();\n       }\n"
+                }
+            ],
+            "date": 1664601422747,
+            "name": "Commit-0",
+            "content": "import 'dart:convert';\n\nimport 'package:get/get.dart';\nimport 'package:http/http.dart' as http;\nimport 'package:therapeutic/app/modules/notes/models/notes_model.dart'\n    as notesModel;\n\nimport '../../../config/config.dart';\nimport '../models/delete_note_model.dart';\n\nclass NotesProvider extends GetConnect {\n  String urlToAppend = \"food/note/\";\n\n  @override\n  void onInit() {\n    httpClient.baseUrl = 'YOUR-API-URL';\n  }\n  Future<List<notesModel.AllNote>> getAllNotes() async {\n\n    var headers = {\n      'Authorization':\n      Config.token\n    };\n    return await http\n        .get(Uri.parse(Config.baseUrl + urlToAppend+\"getAllNotes\"), headers: headers)\n        .then((value) {\n      print(\"notes response... ${value.body}\");\n      print(\"${json.encode(value.body)}\");\n      var jsonData = json.decode(value.body);\n      print(\"${jsonData['status']}\");\n      int status = jsonData['status'];\n      if (value.statusCode == 200) {\n        print(\"value.statusCode ${value.statusCode}\");\n        notesModel.NotesModel notes = notesModel.NotesModel.fromJson(jsonData);\n        print(notes.message);\n        // allNotes.value=notes!.allNote!;\n        return notes!.allNote!;\n      } else {\n        throw new Exception();\n      }\n    });\n  }Future<DeleteNoteModel> deleteNote(String noteId) async {\n\n    var headers = {\n      'Authorization':\n      Config.token\n    };\n    return await http\n        .delete(Uri.parse(Config.baseUrl + urlToAppend+\"deleteNote/\"+noteId), headers: headers)\n        .then((value) {\n      print(\"deleteNote response... ${value.body}\");\n      print(\"${json.encode(value.body)}\");\n      var jsonData = json.decode(value.body);\n      print(\"${jsonData['status']}\");\n      int status = jsonData['status'];\n      if (value.statusCode == 200) {\n        print(\"value.statusCode ${value.statusCode}\");\n        DeleteNoteModel note = DeleteNoteModel.fromJson(jsonData);\n        print(note.message);\n        return note;\n      } else {\n        throw new Exception;\n      }\n    });\n  }\n}\n"
+        }
+    ]
+}

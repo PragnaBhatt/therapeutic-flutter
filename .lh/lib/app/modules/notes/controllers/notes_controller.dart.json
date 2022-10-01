@@ -1,0 +1,46 @@
+{
+    "sourceFile": "lib/app/modules/notes/controllers/notes_controller.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1664596651970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664596665704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n class NotesController extends GetxController {\n   //TODO: Implement NotesController\n   NotesProvider? notesProvide;\n-  late RxList<notesModel.AllNote> allNotes;\n+  late RxList<notesModel.AllNote> allNotes=;\n \n   @override\n   void onInit() {\n     notesProvide = NotesProvider();\n"
+                },
+                {
+                    "date": 1664596673267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n class NotesController extends GetxController {\n   //TODO: Implement NotesController\n   NotesProvider? notesProvide;\n-  late RxList<notesModel.AllNote> allNotes=;\n+  late RxList<notesModel.AllNote> allNotes=RxList;\n \n   @override\n   void onInit() {\n     notesProvide = NotesProvider();\n"
+                },
+                {
+                    "date": 1664596683334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n class NotesController extends GetxController {\n   //TODO: Implement NotesController\n   NotesProvider? notesProvide;\n-  late RxList<notesModel.AllNote> allNotes=RxList;\n+  late RxList<notesModel.AllNote> allNotes=RxList();\n \n   @override\n   void onInit() {\n     notesProvide = NotesProvider();\n@@ -27,9 +27,9 @@\n   }\n \n   Future<List<notesModel.AllNote>> getNotes() {\n \n-    // allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;\n+     allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;\n     return notesProvide!.getAllNotes();\n   }\n \n   Future<DeleteNoteModel> deleteNote(String noteId) {\n"
+                },
+                {
+                    "date": 1664598163112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n class NotesController extends GetxController {\n   //TODO: Implement NotesController\n   NotesProvider? notesProvide;\n-  late RxList<notesModel.AllNote> allNotes=RxList();\n+   RxList<notesModel.AllNote> allNotes=RxList();\n \n   @override\n   void onInit() {\n     notesProvide = NotesProvider();\n@@ -27,9 +27,9 @@\n   }\n \n   Future<List<notesModel.AllNote>> getNotes() {\n \n-     allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;\n+     allNotes.value=notesProvide!.getAllNotes() ;\n     return notesProvide!.getAllNotes();\n   }\n \n   Future<DeleteNoteModel> deleteNote(String noteId) {\n"
+                },
+                {
+                    "date": 1664598294985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   }\n \n   Future<List<notesModel.AllNote>> getNotes() {\n \n-     allNotes.value=notesProvide!.getAllNotes() ;\n+     ;\n     return notesProvide!.getAllNotes();\n   }\n \n   Future<DeleteNoteModel> deleteNote(String noteId) {\n"
+                },
+                {
+                    "date": 1664598303037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,10 @@\n   }\n \n   Future<List<notesModel.AllNote>> getNotes() {\n \n- Future<List<notesModel.AllNote>>    return notesProvide!.getAllNotes();\n+ Future<List<notesModel.AllNote>>\n+     return notesProvide!.getAllNotes();\n   }\n \n   Future<DeleteNoteModel> deleteNote(String noteId) {\n     return notesProvide!.deleteNote(noteId);\n"
+                },
+                {
+                    "date": 1664598333376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     super.onClose();\n   }\n \n   Future<List<notesModel.AllNote>> getNotes() {\n-    Future<List<notesModel.AllNote>> notes = notesProvide!.getAllNotes().then((value) => allNotes=);\n+    Future<List<notesModel.AllNote>> notes = notesProvide!.getAllNotes().then((value) => allNotes=v);\n \n     return notes;\n   }\n \n"
+                }
+            ],
+            "date": 1664596651970,
+            "name": "Commit-0",
+            "content": "import 'package:get/get.dart';\nimport 'package:therapeutic/app/modules/notes/providers/notes_provider.dart';\nimport 'package:therapeutic/app/modules/notes/models/notes_model.dart'\n    as notesModel;\n\nimport '../models/delete_note_model.dart';\n\nclass NotesController extends GetxController {\n  //TODO: Implement NotesController\n  NotesProvider? notesProvide;\n  late RxList<notesModel.AllNote> allNotes;\n\n  @override\n  void onInit() {\n    notesProvide = NotesProvider();\n    super.onInit();\n  }\n\n  @override\n  void onReady() {\n    super.onReady();\n  }\n\n  @override\n  void onClose() {\n    super.onClose();\n  }\n\n  Future<List<notesModel.AllNote>> getNotes() {\n\n    // allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;\n    return notesProvide!.getAllNotes();\n  }\n\n  Future<DeleteNoteModel> deleteNote(String noteId) {\n    return notesProvide!.deleteNote(noteId);\n  }\n}\n"
+        }
+    ]
+}

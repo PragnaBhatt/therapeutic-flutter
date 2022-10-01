@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
  class EmptyFailureNoInternetWidget  {
-  static Widget InternetWidget(
-      {required this.image,
-      required this.title,
-      required this.description,
-      required this.buttonText,
-      required this.onPressed}{
+static    Widget NoData()
+      {
 
   // final String title, description, buttonText, image;
   // final VoidCallback onPressed;
@@ -19,37 +15,29 @@ import 'package:lottie/lottie.dart';
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Lottie.asset(
-                image,
-                height: 250,
-                width: 250,
-              ),
+              // Lottie.network(
+              //   image,
+              //   height: 250,
+              //   width: 250,
+              // ),
+              Icon(Icons.signal_cellular_nodata),
               SizedBox(
                 height: 10,
               ),
               Text(
-                title,
+                "No data Found",
                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 4,
               ),
-              Text(
-                description,
-                style: TextStyle(fontSize: 14),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-              
-                onPressed: onPressed,
-                child: Text(buttonText),
-              )
+             
             ],
           ),
         ),
       ),
     );
       }
+
+
 }

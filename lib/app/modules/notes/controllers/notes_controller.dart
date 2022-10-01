@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:therapeutic/app/modules/notes/models/update_note_model.dart';
 import 'package:therapeutic/app/modules/notes/providers/notes_provider.dart';
 import 'package:therapeutic/app/modules/notes/models/notes_model.dart'
     as notesModel;
@@ -8,7 +9,7 @@ import '../models/delete_note_model.dart';
 class NotesController extends GetxController {
   //TODO: Implement NotesController
   NotesProvider? notesProvide;
-  // late RxList<notesModel.AllNote> allNotes;
+  RxList<notesModel.AllNote> allNotes = RxList();
 
   @override
   void onInit() {
@@ -27,12 +28,34 @@ class NotesController extends GetxController {
   }
 
   Future<List<notesModel.AllNote>> getNotes() {
+    Future<List<notesModel.AllNote>> notes =
+        notesProvide!.getAllNotes().then((value) => allNotes.value = value);
 
-    // allNotes.value=notesProvide!.getAllNotes() as List<notesModel.AllNote>;
-    return notesProvide!.getAllNotes();
+    return notes;
   }
 
   Future<DeleteNoteModel> deleteNote(String noteId) {
-    return notesProvide!.deleteNote(noteId);
+    Future<DeleteNoteModel> deleteNote;
+
+    deleteNote = notesProvide!.deleteNote(noteId);
+
+  //  deleteNote. then((value) {
+  //     if (value.status == 1) {
+  //       allNotes.value.removeWhere((element) => element.sId == noteId);
+  //       print(allNotes.length);
+  //     }
+  //   });
+
+    return deleteNote;
+  }
+
+  Future<UpdateNoteModel> updateNote(String noteId,String forProduct,String description) {
+    Future<UpdateNoteModel> updateNote;
+
+    updateNote = notesProvide!.updateNote(noteId,forProduct,description);
+
+
+
+    return updateNote;
   }
 }

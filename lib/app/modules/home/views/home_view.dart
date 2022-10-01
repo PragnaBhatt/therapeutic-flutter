@@ -39,7 +39,8 @@ class HomeView extends GetView<HomeController> {
                     if (snapData.connectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
                     } else if (snapData.hasError) {
-                      return Text("error");
+                      // return Text("error");
+                      return Text(snapData.error.toString());
                     }
                     return HomeWidget(
                       snapData: snapData,

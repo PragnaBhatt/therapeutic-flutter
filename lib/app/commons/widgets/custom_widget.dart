@@ -10,7 +10,7 @@ class CustomWidgets {
     required dataToPrint,
     customFontsize = SizeConstants.FONT_SIZE,
     customAlignment = Alignment.centerLeft,
-    customColor = ColorConstants.color_font,
+    customColor = ColorConstants.colorAccent,
     customMaxlines = 2,
     customMinLines = 2,
   }) {

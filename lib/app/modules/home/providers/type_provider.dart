@@ -46,7 +46,8 @@ class TypeProvider extends GetConnect {
       throw new Exception();
     }*/
 
-    var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+  //  var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+    var headers = {'Authorization': Config.token};
     var request = http.Request(
         'GET', Uri.parse(Config.baseUrl + 'food/fetchFoodProducts'));
     if(catName.isNotEmpty) {
@@ -58,21 +59,29 @@ class TypeProvider extends GetConnect {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
+    var res = await response.stream.bytesToString();
+    print("RESSS ${res}");
     if (response.statusCode == 200) {
       // print(await response.stream.bytesToString());
-      var res = await response.stream.bytesToString();
-      productModel.ProductModel model = new productModel.ProductModel();
-      model = productModel.ProductModel.fromJson(json.decode(res.toString()));
 
-      return model.data!;
+      try {
+        productModel.ProductModel model = new productModel.ProductModel();
+        model = productModel.ProductModel.fromJson(json.decode(res.toString()));
+        return model.data!;
+      }catch(e)
+    {
+      print("in to else11fetch product ${e.toString()}");
+      throw new Exception(e);
+    }
+
     } else {
-      print("in to else...");
+      print("in to else11111****...");
       throw new Exception();
     }
   }
 
   Future<ProductDetailModel> fetchFoodProductDetail(String prodId) async {
+
     var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     var request = http.Request(
         'GET', Uri.parse(Config.baseUrl + 'food/fetchFoodProducts'));

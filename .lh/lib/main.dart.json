@@ -1,0 +1,34 @@
+{
+    "sourceFile": "lib/main.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1664597369414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1664597374680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,11 +47,11 @@\n       //  color: CupertinoColors.separator,\n     //  theme: _buildTheme(Brightness.dark),\n       title: \"Application\",\n       initialRoute: AppPages.INITIAL,\n-      //theme: AppTheme.dark,\n-      darkTheme: AppTheme.dark,\n-      themeMode: ThemeMode.light,\n+      theme: AppTheme.dark,\n+     // darkTheme: AppTheme.dark,\n+    //  themeMode: ThemeMode.light,\n       getPages: AppPages.routes,\n     ),\n   );\n }\n"
+                },
+                {
+                    "date": 1664597395479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n       //  color: CupertinoColors.separator,\n     //  theme: _buildTheme(Brightness.dark),\n       title: \"Application\",\n       initialRoute: AppPages.INITIAL,\n-      theme: AppTheme.dark,\n+   //   theme: AppTheme.light,\n      // darkTheme: AppTheme.dark,\n     //  themeMode: ThemeMode.light,\n       getPages: AppPages.routes,\n     ),\n"
+                },
+                {
+                    "date": 1664597592795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n     //  theme: _buildTheme(Brightness.dark),\n       title: \"Application\",\n       initialRoute: AppPages.INITIAL,\n    //   theme: AppTheme.light,\n-     // darkTheme: AppTheme.dark,\n+      darkTheme: AppTheme.dark,\n     //  themeMode: ThemeMode.light,\n       getPages: AppPages.routes,\n     ),\n   );\n"
+                },
+                {
+                    "date": 1664598109705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,10 +47,10 @@\n       //  color: CupertinoColors.separator,\n     //  theme: _buildTheme(Brightness.dark),\n       title: \"Application\",\n       initialRoute: AppPages.INITIAL,\n-   //   theme: AppTheme.light,\n-      darkTheme: AppTheme.dark,\n+      theme: AppTheme.dark,\n+     // darkTheme: AppTheme.dark,\n     //  themeMode: ThemeMode.light,\n       getPages: AppPages.routes,\n     ),\n   );\n"
+                }
+            ],
+            "date": 1664597369414,
+            "name": "Commit-0",
+            "content": "import 'package:firebase_core/firebase_core.dart';\nimport 'package:flutter/cupertino.dart';\nimport 'package:flutter/foundation.dart';\nimport 'package:flutter/material.dart';\n\nimport 'package:get/get.dart';\nimport 'package:google_fonts/google_fonts.dart';\nimport 'package:therapeutic/app/constants/color_constants.dart';\n\nimport 'app/commons/utils/custom_error.dart';\nimport 'app/config/theme/app_theme.dart';\nimport 'app/routes/app_pages.dart';\nimport 'package:firebase_auth/firebase_auth.dart';\nimport 'package:google_sign_in/google_sign_in.dart';\n\nvoid main() async {\n  WidgetsFlutterBinding.ensureInitialized();\n\n  // initializing the firebase app\n  WidgetsFlutterBinding.ensureInitialized();\n  await Firebase.initializeApp();\n\n  ErrorWidget.builder = (FlutterErrorDetails details) {\n    // If we're in debug mode, use the normal error widget which shows the error\n    // message:\n    // if (kDebugMode) {\n    //   return ErrorWidget(details.exception);\n    // }\n    // In release builds, show a yellow-on-blue message instead:\n    /* return Container(\n      alignment: Alignment.center,\n      child: Text(\n        'Error!\\n${details.exception}',\n        style: const TextStyle(color: Colors.yellow),\n        textAlign: TextAlign.center,\n        textDirection: TextDirection.ltr,\n      ),\n    );*/\n\n    return CustomError(\n      errorDetails: details,\n    );\n  };\n  // WidgetsFlutterBinding.ensureInitialized();\n  runApp(\n    GetMaterialApp(\n      //  color: CupertinoColors.separator,\n    //  theme: _buildTheme(Brightness.dark),\n      title: \"Application\",\n      initialRoute: AppPages.INITIAL,\n      //theme: AppTheme.dark,\n      darkTheme: AppTheme.dark,\n      themeMode: ThemeMode.light,\n      getPages: AppPages.routes,\n    ),\n  );\n}\n\nThemeData _buildTheme(brightness) {\n  var baseTheme = ThemeData(brightness: brightness,\n    primaryColor: ColorConstants.colorPrimary1,\n  );\n\n  return baseTheme.copyWith(\n    textTheme: GoogleFonts.biryaniTextTheme(baseTheme.textTheme),\n  );\n}\n/*ThemeData _buildTheme(brightness) {\n  var baseTheme = ThemeData(\n      brightness: brightness,\n      // primaryColor: ColorConstants.colorPrimary1,\n\n      colorScheme: ColorScheme.fromSwatch()\n          .copyWith(secondary: ColorConstants.colorPrimary1));\n\n  return baseTheme.copyWith(\n    textTheme: GoogleFonts.biryaniTextTheme(baseTheme.textTheme),\n  );\n}*/\n"
+        }
+    ]
+}

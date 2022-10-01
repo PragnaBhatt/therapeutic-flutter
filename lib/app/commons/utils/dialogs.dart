@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:therapeutic/app/commons/widgets/custom_widget.dart';
 import 'package:therapeutic/app/constants/color_constants.dart';
 import 'package:therapeutic/app/constants/size_constants.dart';
+import 'package:therapeutic/app/constants/string_constants.dart';
 
 import '../../routes/app_pages.dart';
 
@@ -35,7 +36,7 @@ class CommonDialogs {
               child: CustomWidgets.customTextWidget(
                   dataToPrint: "Cancel",
                   customAlignment: Alignment.center,
-                  customColor: ColorConstants.color_white))
+                 ))
           // ),
         ],
         content: Column(
@@ -193,7 +194,7 @@ class CommonDialogs {
     return Get.defaultDialog(
         title: "Application",
         middleText: msg,
-        backgroundColor: Colors.white,
+   //     backgroundColor: Colors.white,
         titleStyle: TextStyle(color: Colors.red),
         middleTextStyle: TextStyle(color: Colors.red),
         confirm: ElevatedButton(
@@ -209,9 +210,9 @@ class CommonDialogs {
 
   static Future<void> showGetMessage({required msg}) async {
     return Get.defaultDialog(
-        title: "Application",
+        title: StringConstants.APPLICATIONNAME,
         middleText: msg,
-        backgroundColor: Colors.white,
+       // backgroundColor: Colors.white,
         titleStyle: TextStyle(color: Colors.red),
         middleTextStyle: TextStyle(color: Colors.red),
         confirm: ElevatedButton(
@@ -220,7 +221,7 @@ class CommonDialogs {
             },
             child: const Text(
               "Ok",
-              style: TextStyle(color: Colors.white),
+            
             )),
         radius: 30);
   }
@@ -230,6 +231,7 @@ class CommonDialogs {
     String msg = 'Please wait..',
     bool isDismissible = false,
     required Function onOkClick,
+  
   }) async {
     return showDialog(
       barrierDismissible: isDismissible,
@@ -251,7 +253,7 @@ class CommonDialogs {
               child: CustomWidgets.customTextWidget(
                   dataToPrint: "OK",
                   customAlignment: Alignment.center,
-                  customColor: ColorConstants.color_white))
+                ))
           // ),
         ],
         content: Column(
@@ -284,6 +286,79 @@ class CommonDialogs {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+ static Future<void> showMsgDialog2({
+    required BuildContext ctx,
+    String msg = 'Please wait..',
+    bool isDismissible = false,
+    required Function onOkClick,
+    required Function onCancelClick,
+  
+  }) async {
+    return showDialog(
+      barrierDismissible: isDismissible,
+      context: ctx,
+      builder: (ctx) => AlertDialog(
+        elevation: 12,
+        actions: [
+       
+
+          ElevatedButton(
+              onPressed: () {
+                onOkClick();
+              },
+              child: CustomWidgets.customTextWidget(
+                  dataToPrint: "OK",
+                  customAlignment: Alignment.center,
+                )) , ElevatedButton(
+              onPressed: () {
+                onCancelClick();
+              },
+              child: CustomWidgets.customTextWidget(
+                  dataToPrint: "Cancel",
+                  customAlignment: Alignment.center,
+                ))
+          // ),
+        ],
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomWidgets.customTextWidget(
+                dataToPrint: StringConstants.APPLICATIONNAME,
+                customAlignment: Alignment.center,
+                customFontsize: SizeConstants.FONT_SIZE_HEADER),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(color: ColorConstants.colorDivider),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                print("on camera clicked ");
+                onOkClick();
+              },
+              child: Row(
+                children: [
+                  const Icon(Icons.info_outline_rounded),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: CustomWidgets.customTextWidget(dataToPrint: msg)),
+                ],
+              ),
+            ),
+          
             const SizedBox(
               height: 20,
             ),
