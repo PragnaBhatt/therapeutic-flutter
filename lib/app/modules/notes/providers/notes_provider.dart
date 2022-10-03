@@ -8,6 +8,7 @@ import 'package:therapeutic/app/modules/notes/models/notes_model.dart'
 import 'package:therapeutic/app/modules/notes/models/update_note_model.dart';
 
 import '../../../config/config.dart';
+import '../models/create_note_model.dart';
 import '../models/delete_note_model.dart';
 
 class NotesProvider extends GetConnect {
@@ -74,7 +75,7 @@ class NotesProvider extends GetConnect {
         .patch(Uri.parse(Config.baseUrl + urlToAppend + "updateNote/" + noteId),
             headers: headers,body: {"forProduct":forProduct,"description":description})
         .then((value) {
-      print("deleteNote response... ${value.body}");
+      print("updateNote response... ${value.body}");
       print("${json.encode(value.body)}");
       var jsonData = json.decode(value.body);
       print("${jsonData['status']}");
@@ -82,6 +83,31 @@ class NotesProvider extends GetConnect {
       if (value.statusCode == 200) {
         print("value.statusCode ${value.statusCode}");
         UpdateNoteModel note = UpdateNoteModel.fromJson(jsonData);
+        print(note.message);
+        return note;
+      } else {
+        CommonDialogs.showGetMessage(msg: jsonData['message']);
+        throw new Exception(jsonData['message']);
+      }
+    });
+  }
+
+  Future<CreateNoteModel> createNote(
+      String forProduct, String description) async {
+    var headers = {'Authorization': Config.token};
+    //  request.bodyFields = {'id': prodId};
+    return await http
+        .post(Uri.parse(Config.baseUrl + urlToAppend + "createNote/" ),
+        headers: headers,body: {"forProduct":forProduct,"description":description})
+        .then((value) {
+      print("createNote response... ${value.body}");
+      print("${json.encode(value.body)}");
+      var jsonData = json.decode(value.body);
+      print("${jsonData['status']}");
+      int status = jsonData['status'];
+      if (value.statusCode == 201) {
+        print("value.statusCode ${value.statusCode}");
+        CreateNoteModel note = CreateNoteModel.fromJson(jsonData);
         print(note.message);
         return note;
       } else {

@@ -31,7 +31,7 @@ class TypeWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.network(
-                  'https1://flutterawesome.com/content/images/2021/07/Accessories.jpg',
+                  'https://flutterawesome.com/content/images/2021/07/Accessories.jpg',
                   height: 70,
                   width: 70,
                   fit: BoxFit.cover,

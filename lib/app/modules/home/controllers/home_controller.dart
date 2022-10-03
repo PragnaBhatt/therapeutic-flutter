@@ -7,7 +7,7 @@ import 'package:therapeutic/app/modules/models/product_model.dart'
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-
+// RxMap<String,productModel.Data> ={}.obs;
   final count = 0.obs;
   TypeProvider? typeProvider;
 
