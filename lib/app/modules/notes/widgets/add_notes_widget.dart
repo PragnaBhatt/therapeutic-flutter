@@ -18,56 +18,57 @@ class AddNoteWidget extends GetView<NotesController> {
   String note;
   String noteId;
   String forProduct;
-
+  TextEditingController ctrl;
   AddNoteWidget(
-      {required this.note, required this.noteId, required this.forProduct});
+      {required this.note,
+      required this.noteId,
+      required this.forProduct,
+      required this.ctrl});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController ctrl = new TextEditingController(text: note);
-    return
-       Padding(
-         padding: EdgeInsets.only(
-             bottom: MediaQuery.of(context).viewInsets.bottom),         child: Container(
-          child: Column(
-
-            mainAxisSize: MainAxisSize.min,
-              children: [
-            TextFormField(
-              maxLines: 10,
-              minLines: 10,
-              controller: ctrl,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  if (noteId.compareTo("-1") != 0) {
-                    controller
-                        .updateNote(
-                      noteId,
-                      forProduct,
-                      ctrl.text,
-                    )
-                        .then((UpdateNoteModel value) {
-                      print(
-                          "ID::: ${controller.allNotes.indexOf(value.note!.sId)}");
+    // TextEditingController ctrl = new TextEditingController(text: note);
+    //this.ctrl = ctrl;
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          TextFormField(
+            maxLines: 10,
+            minLines: 10,
+            controller: ctrl,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                if (noteId.compareTo("-1") != 0) {
+                  controller
+                      .updateNote(
+                    noteId,
+                    forProduct,
+                    ctrl.text,
+                  )
+                      .then((UpdateNoteModel value) {
+                    print(
+                        "ID::: ${controller.allNotes.indexOf(value.note!.sId)}");
 // controller.allNotes.value.
 
-                      Get.back();
-                    });
-                  } else {
-                    controller
-                        .createNote(
-                      forProduct,
-                      ctrl.text,
-                    )
-                        .then((CreateNoteModel value) {
-                      CommonDialogs.showToast(ctx: context, msg: value!.message!);
-                      if (value.status == 1) {
-                        // controller.allNotes.add(
-                        //     noteModel.Note(description: value!.note!.description!,byUser: value!.note!.byUser!,createdAt: value!.note!.createdAt!,forProduct: value!.note!.forProduct!,iV: value!.note!.iV!,sId: value!.note!.sId!,updatedAt: value!.note!.updatedAt!));
-                        //   controller.allNotes.add(value!.note! as noteModel.NoteModel);
-                        //  AllNote
-                        controller.allNotes.value.add(noteModel.AllNote(
+                    Get.back();
+                  });
+                } else {
+                  controller
+                      .createNote(
+                    forProduct,
+                    ctrl.text,
+                  )
+                      .then((CreateNoteModel value) {
+                    CommonDialogs.showToast(ctx: context, msg: value!.message!);
+                    if (value.status == 1) {
+                      // controller.allNotes.add(
+                      //     noteModel.Note(description: value!.note!.description!,byUser: value!.note!.byUser!,createdAt: value!.note!.createdAt!,forProduct: value!.note!.forProduct!,iV: value!.note!.iV!,sId: value!.note!.sId!,updatedAt: value!.note!.updatedAt!));
+                      //   controller.allNotes.add(value!.note! as noteModel.NoteModel);
+                      //  AllNote
+                      /*controller.allNotes.value.add(noteModel.AllNote(
                             description: value!.note!.description!,
                             createdAt: value!.note!.createdAt!,
                             forProduct: noteModel.ForProduct.fromJson(
@@ -76,17 +77,28 @@ class AddNoteWidget extends GetView<NotesController> {
                                 json.decode(value!.note!.byUser.toString())),
                             iV: value!.note!.iV!,
                             sId: value!.note!.sId!,
-                            updatedAt: value!.note!.updatedAt!));
+                            updatedAt: value!.note!.updatedAt!));*/
 
-                      } else {}
+                      controller.allNotes.add(noteModel.AllNote(
+                          description: value.note!.description!,
+                          createdAt: value.note!.createdAt!,
+                          byUser: noteModel.ByUser.fromJson(
+                              value.note!.byUser!.toJson()),
+                          forProduct: noteModel.ForProduct.fromJson(
+                              value.note!.forProduct!.toJson()),
+                          iV: value.note!.iV!,
+                          sId: value.note!.sId!,
+                          updatedAt: value.note!.updatedAt!));
+                      print("values.... ${controller.allNotes.length}");
+                    } else {}
 
-                      Get.back();
-                    });
-                  }
-                },
-                child: Text(noteId.compareTo("-1") == 0 ? "Add Note" : "Update"))
-          ]),
-    ),
-       );
+                    Get.back();
+                  });
+                }
+              },
+              child: Text(noteId.compareTo("-1") == 0 ? "Add Note" : "Update"))
+        ]),
+      ),
+    );
   }
 }

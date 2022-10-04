@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/app/modules/home/views/widgets/home_widget.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1664882657441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1664882657441,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\nimport 'package:therapeutic/app/modules/home/views/widgets/item_widget.dart';\r\nimport 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';\r\n\r\nclass HomeWidget extends StatelessWidget {\r\n  AsyncSnapshot<List<dynamic>> snapData;\r\n\r\n  HomeWidget({required this.snapData});\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return SingleChildScrollView(\r\n        child: snapData.hasData\r\n            ? Column(\r\n                children: [\r\n\r\n\r\n\r\n                  Container(\r\n                    height: 262,\r\n                    child: GridView.builder(\r\n                        itemCount: snapData.data![0].length,\r\n                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(\r\n                            crossAxisCount: 3,\r\n                            crossAxisSpacing: 2,\r\n                            mainAxisSpacing: 2),\r\n                        itemBuilder: (ctx, pos) {\r\n                          return TypeWidget(type: snapData.data![0][pos]!);\r\n                        }),\r\n                  ),\r\n                //  Text(\"Top\"),\r\n                  ListView.builder(\r\n                      physics: NeverScrollableScrollPhysics(),\r\n                      shrinkWrap: true,\r\n                      itemCount: snapData.data![1].length,\r\n                      itemBuilder: (context, pos) {\r\n                        return  ItemWidget( data: snapData.data![1][pos],pos: pos,);\r\n                      })\r\n                ],\r\n              )\r\n            : Text(\"NO ANY DATA AVAILABLE....\"));\r\n  }\r\n}\r\n"
+        }
+    ]
+}

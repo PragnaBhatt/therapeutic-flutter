@@ -13,12 +13,15 @@ class HomeWidget extends StatelessWidget {
         child: snapData.hasData
             ? Column(
                 children: [
+
+
+
                   Container(
-                    height: 120,
+                    height: 362,
                     child: GridView.builder(
                         itemCount: snapData.data![0].length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
+                            crossAxisCount: 3,
                             crossAxisSpacing: 2,
                             mainAxisSpacing: 2),
                         itemBuilder: (ctx, pos) {

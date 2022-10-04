@@ -157,13 +157,15 @@ class NotesView extends GetView<NotesController> {
                                       showModalBottomSheet(
                                           context: context,
                                           builder: (ctx) {
+                                            TextEditingController ctrl=TextEditingController(text: allNotes[index]
+                                                        .description! );
                                             return AddNoteWidget(
                                               note:
                                                   allNotes[index].description!,
                                               noteId: allNotes[index].sId!,
                                               forProduct: allNotes[index]
                                                   .forProduct!
-                                                  .sId!,
+                                                  .sId!,ctrl: ctrl,
                                             );
                                           });
                                     },

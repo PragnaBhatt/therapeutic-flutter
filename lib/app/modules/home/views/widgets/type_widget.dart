@@ -8,6 +8,8 @@ import 'package:therapeutic/app/modules/home/type_model.dart' as typeModel;
 import 'package:therapeutic/app/modules/home/views/product_list_view.dart';
 import 'package:therapeutic/app/routes/app_pages.dart';
 
+import '../../../../config/config.dart';
+
 class TypeWidget extends StatelessWidget {
   typeModel.Data type;
 
@@ -19,10 +21,10 @@ class TypeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 4,
       child: Center(
         child: Container(
-          height: 100,
+          height: 160,
           child: InkWell(
             onTap: (){Get.toNamed(Routes.PRODUCT_LIST,arguments: type.name);},
             child: Column(
@@ -30,16 +32,24 @@ class TypeWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.network(
-                  'https://flutterawesome.com/content/images/2021/07/Accessories.jpg',
-                  height: 70,
-                  width: 70,
+                // Image.network(
+                //   'https://flutterawesome.com/content/images/2021/07/Accessories.jpg',
+                //   height: 70,
+                //   width: 70,
+                //   fit: BoxFit.cover,
+                // ),
+            ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+             child:   Image.network(
+                  Config.baseUrlImages + type!.image! + Config.imagesExtenstion,
+                  height: 80,
+                  width: 80,
                   fit: BoxFit.cover,
-                ),
+                )),
                 SizedBox(height: 4,),
                 Text(
-                  " (${type.total.toString()})",
-                  // "${type.name} (${type.total.toString()})",
+                 // " (${type.total.toString()})",
+                   "${type.name} (${type.total.toString()})",
                   maxLines: 2,
                   textAlign: TextAlign.center,
                 ),
