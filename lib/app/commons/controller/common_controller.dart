@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+/*
 class CommonController extends GetxController {
   late String USER_EMAIL = "USER_EMAIL";
   late String USER_ID = "USER_ID";
@@ -14,3 +15,4 @@ class CommonController extends GetxController {
       required this.USER_TOKEN,
       required this.USER_PASSWORD});
 }
+*/

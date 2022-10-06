@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:therapeutic/app/constants/color_constants.dart';
+import 'package:therapeutic/app/modules/login/controllers/login_controller.dart';
 
 import 'app/commons/utils/custom_error.dart';
 import 'app/config/theme/app_theme.dart';
@@ -19,6 +20,7 @@ void main() async {
   // initializing the firebase app
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(LoginController(USER_TOKEN: "",USER_PASSWORD: "",USER_NAME: "",USER_ID: "",USER_EMAIL: ""));
 
   ErrorWidget.builder = (FlutterErrorDetails details) {
     // If we're in debug mode, use the normal error widget which shows the error
@@ -53,6 +55,7 @@ void main() async {
       themeMode: ThemeMode.light,
       getPages: AppPages.routes,
     ),
+
   );
 }
 

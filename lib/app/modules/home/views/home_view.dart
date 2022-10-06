@@ -5,6 +5,7 @@ import 'package:therapeutic/app/modules/home/type_model.dart' as type;
 import 'package:therapeutic/app/modules/home/views/widgets/home_widget.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/tab_widget.dart';
 import '../../notes/views/notes_view.dart';
+import '../../profile/views/profile_view.dart';
 import '../controllers/home_controller.dart';
 import 'package:therapeutic/app/modules/models/product_model.dart'
     as productModel;
@@ -49,7 +50,7 @@ class HomeView extends GetView<HomeController> {
              // Text("1"),
               NotesView(),
               Text("2"),
-              Text("3"),
+              ProfileView(),
             ],
           ),
         ),

@@ -64,7 +64,7 @@ class NotesView extends GetView<NotesController> {
                                   Text(
                                     checkDate(allNotes[index].updatedAt!),
                                     textAlign: TextAlign.end,
-                                    style: TextStyle(
+                                    style:const TextStyle(
                                         fontSize: SizeConstants.FONT_SIZE_12),
                                   ),
                                   const CircleAvatar(
@@ -139,14 +139,14 @@ class NotesView extends GetView<NotesController> {
                                           },
                                           isDismissible: false);
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.delete,
                                       size: 24,
                                       color: ColorConstants.colorPrimary,
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                            const    SizedBox(
                                   height: 6,
                                 ),
                                 ClipRRect(
@@ -169,7 +169,7 @@ class NotesView extends GetView<NotesController> {
                                             );
                                           });
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.edit,
                                       size: 24,
                                       color: ColorConstants.colorPrimary,
@@ -201,12 +201,12 @@ class NotesView extends GetView<NotesController> {
     if (differenceInDays == 0) {
       timeToDisplay = "today";
     } else if (differenceInDays <= 7) {
-      timeToDisplay = (differenceInDays.toString() + " days ago ");
+      timeToDisplay = ("$differenceInDays days ago ");
     } else if (differenceInDays > 7 && differenceInMonths < 30) {
-      timeToDisplay = (differenceInDays.toString() + " days ago ");
+      timeToDisplay = ("$differenceInDays days ago ");
     } else {
-      timeToDisplay = (differenceInMonths.toString() + " months ago ");
+      timeToDisplay = ("$differenceInMonths months ago ");
     }
-    return "edited : " + timeToDisplay + "";
+    return "edited : $timeToDisplay";
   }
 }

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:therapeutic/app/modules/login/views/signup_screen.dart';
+import 'package:therapeutic/app/modules/login/views/verify_user_screen.dart';
 
 import '../commons/screens/key_test.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -9,14 +11,17 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notes/bindings/notes_binding.dart';
 import '../modules/notes/views/notes_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  // static const INITIAL = Routes.LOGIN;
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.LOGIN;
+  // static const INITIAL = Routes.VERYFY_USER;
+  // static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -47,6 +52,20 @@ class AppPages {
       name: _Paths.NOTES,
       page: () => const NotesView(),
       binding: NotesBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () =>  ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () =>  SignUp_Screen(),
+      binding: LoginBinding(),
+    ),GetPage(
+      name: _Paths.VERYFY_USER,
+      page: () =>  VerifyUser_Screen(),
+      binding: LoginBinding(),
     ),
   ];
 }

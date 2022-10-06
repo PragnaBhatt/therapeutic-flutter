@@ -13,6 +13,7 @@ import 'package:therapeutic/app/commons/connectivity/checker.dart';
 import 'package:therapeutic/app/commons/utils/shared_pref_names.dart';
 import 'package:therapeutic/app/commons/utils/validations.dart';
 import 'package:therapeutic/app/commons/widgets/custom_widget.dart';
+import 'package:therapeutic/app/config/config.dart';
 import 'package:therapeutic/app/modules/login/controllers/login_controller.dart';
 import 'package:therapeutic/app/modules/login/models/login_model.dart';
 import 'package:therapeutic/app/modules/login/provider/login_provider.dart';
@@ -39,13 +40,13 @@ class _LoginViewState extends State<LoginView> {
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
   late String userPassword = "", userEmail = "";
 
-  // LoginController? loginController;
+  LoginController? loginController;
 
   @override
   void initState() {
-    var internetChecker = Get.find<Checker>();
+    // var internetChecker = Get.find<Checker>();
+    loginController = Get.find<LoginController>();
 
-    // loginController = new LoginController();
     pref.then((SharedPreferences sharedPreferences) {
       sharedPref = sharedPreferences;
       userEmail = sharedPref.getString(ShredPrefNames.USER_EMAIL)!;
@@ -56,8 +57,8 @@ class _LoginViewState extends State<LoginView> {
           userPassword.isNotEmpty) {
         emailController.text = userEmail;
         passwordController.text = userPassword;
-        setState(() {});
-        doLogin(_formKey);
+        //   setState(() {});
+        // doLogin(_formKey);
       }
     }).catchError((error) {
       SnackBar(
@@ -78,6 +79,34 @@ class _LoginViewState extends State<LoginView> {
   doLogin(_formKey) async {
     if (_formKey.currentState!.validate()) {
       print("in to valid state");
+
+      loginController!
+          .doLogin(emailController.text.toString().trim(),
+              passwordController.text.toString().trim())
+          .then((LoginModel value) {
+        CommonDialogs.showToast(ctx: context, msg: value.message!);
+        if (value.status == 1) {
+          sharedPref.setString(ShredPrefNames.USER_EMAIL, value.user!.email!);
+          sharedPref.setString(ShredPrefNames.USER_NAME, value.user!.name!);
+          sharedPref.setString(ShredPrefNames.USER_ID, value.user!.sId!);
+          sharedPref.setString(
+              ShredPrefNames.USER_TOKEN, value.user!.tokens![0]!.token!);
+          sharedPref.setString(ShredPrefNames.USER_PASSWORD,
+              passwordController.text.toString().trim());
+
+          Config.token = value.user!.tokens![0]!.token!;
+
+          Get.put(LoginController(
+              USER_EMAIL: value.user!.email!,
+              USER_ID: value.user!.sId!,
+              USER_NAME: value.user!.name!,
+              USER_PASSWORD: passwordController.text.toString().trim(),
+              USER_TOKEN: value.user!.tokens![0]!.token!));
+
+          Get.offAndToNamed(Routes.HOME);
+        }
+      });
+
       // AdminAPIs.loginUser(emailController.text.toString().trim(),
       //         passwordController.text.toString().trim())
       //     .then((streamedResponse) async {
@@ -180,16 +209,16 @@ class _LoginViewState extends State<LoginView> {
 
   bool isSignIn = false;
   bool google = false;
-
+  bool isObscure = false;
   @override
   Widget build(BuildContext context) {
-    const String assetName = 'assets/login1.svg';
+    const String assetName = 'assets/login.svg';
     // var height=MediaQuery.of(context).he
     _formKey = GlobalKey<FormState>();
-    bool isShow = false;
+    bool isShow = true;
 
     return Scaffold(
-      backgroundColor: ColorConstants.color_white,
+      //backgroundColor: ColorConstants.color_white,
       // appBar: AppBar(
       //     title: CustomWidgets.customTextWidget(
       //         dataToPrint: "Login",
@@ -202,7 +231,7 @@ class _LoginViewState extends State<LoginView> {
             children: [
               Stack(
                 children: [
-                  InkWell(
+                  /*  InkWell(
                       child: Container(
                           margin: EdgeInsets.only(top: 25),
                           decoration: BoxDecoration(
@@ -236,32 +265,25 @@ class _LoginViewState extends State<LoginView> {
                         GoogleSignInAccount? googleSignInAccount =
                             await googleSignIn.signIn();
 
-                        if (googleSignInAccount != null) {
-                          final GoogleSignInAuthentication
-                              googleSignInAuthentication =
-                              await googleSignInAccount.authentication;
-                          final AuthCredential authCredential =
-                              GoogleAuthProvider.credential(
-                                  idToken: googleSignInAuthentication.idToken,
-                                  accessToken:
-                                      googleSignInAuthentication.accessToken);
-
-                          // Getting users credential
-                          UserCredential result =
-                              await _auth.signInWithCredential(authCredential);
-                          //  User user = result.user;
-
-                          if (result != null) {
-                            print("result not null");
-                            print("result... "+result.user!.email!);
-                            print("result... "+result.user!.photoURL!);
-                        //    ScaffoldMessenger.of(context).showSnackBar(snackBar)
-                            //  Navigator.pushReplacement(
-                            //   context, MaterialPageRoute(builder: (context) => HomePage()));
-                          } // if result not null we simply call the MaterialpageRoute,
-                          // for go to the HomePage screen
-                        }
-                      }),
+                        // if (googleSignInAccount != null) {
+                        //   final GoogleSignInAuthentication googleSignInAuthentication =
+                        //   await googleSignInAccount.authentication;
+                        //   final AuthCredential authCredential = GoogleAuthProvider.credential(
+                        //       idToken: googleSignInAuthentication.idToken,
+                        //       accessToken: googleSignInAuthentication.accessToken);
+                        //
+                        //   // Getting users credential
+                        //   UserCredential result = await auth.signInWithCredential(authCredential);
+                        //   //  User user = result.user;
+                        //
+                        //   if (result != null) {
+                        //     print("result not null");
+                        //   //  Navigator.pushReplacement(
+                        //      //   context, MaterialPageRoute(builder: (context) => HomePage()));
+                        //   } // if result not null we simply call the MaterialpageRoute,
+                        //   // for go to the HomePage screen
+                        // }
+                      }),*/
                   if (isShow)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
@@ -321,7 +343,7 @@ class _LoginViewState extends State<LoginView> {
                             "Login with your credentials",
                             style: TextStyle(
                                 fontSize: SizeConstants.FONT_SIZE_HEADER,
-                                color: ColorConstants.color_black),
+                                color: ColorConstants.colorPrimaryDark),
                           ),
                           const SizedBox(
                             height: SizeConstants.SIZEDBOX_16,
@@ -349,8 +371,8 @@ class _LoginViewState extends State<LoginView> {
                                     return null;
                                   },
                                   style: const TextStyle(
-                                      fontSize: SizeConstants.FONT_SIZE,
-                                      color: ColorConstants.color_black),
+                                    fontSize: SizeConstants.FONT_SIZE,
+                                  ),
                                   decoration: const InputDecoration(
                                     labelText: "Enter Email Address",
                                     hintText: " Email ",
@@ -362,6 +384,7 @@ class _LoginViewState extends State<LoginView> {
                                   height: SizeConstants.SIZEDBOX_10,
                                 ),
                                 TextFormField(
+                                  obscureText: isObscure,
                                   controller: passwordController,
                                   validator: (input) {
                                     if (input == null ||
@@ -373,13 +396,23 @@ class _LoginViewState extends State<LoginView> {
                                   },
                                   // obscureText: true,
                                   style: const TextStyle(
-                                      fontSize: SizeConstants.FONT_SIZE,
-                                      color: ColorConstants.color_black),
-                                  decoration: const InputDecoration(
+                                    fontSize: SizeConstants.FONT_SIZE,
+                                  ),
+                                  decoration: InputDecoration(
                                       labelText: "Enter Password",
                                       hintText: " Password ",
                                       prefixIcon: Icon(Icons.password),
-                                      suffixIcon: Icon(Icons.visibility),
+                                      suffixIcon: InkWell(
+                                          onTap: () {
+                                            print("clicked....");
+                                            isObscure = !isObscure;
+                                            setState(() {
+
+                                            });
+                                          },
+                                          child: Icon(isObscure
+                                              ? Icons.visibility_off
+                                              : Icons.visibility)),
                                       border: OutlineInputBorder()),
                                 ),
                               ],
@@ -420,6 +453,9 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           InkWell(
                             onTap: () {
+                              print("on register clickd...");
+                              Get.toNamed(Routes.REGISTER);
+
                               // Navigator.pushNamed(
                               //     context, SignUp_Screen.routeName);
                             },

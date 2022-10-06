@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:therapeutic/app/commons/widgets/empty_failure_nointernet_widgetdart.dart';
 import 'package:therapeutic/app/constants/size_constants.dart';
 import 'package:therapeutic/app/modules/home/controllers/home_controller.dart';
 import 'package:therapeutic/app/modules/notes/controllers/notes_controller.dart';
@@ -99,7 +100,7 @@ class ProductDetailView extends GetView<HomeController> {
                                     backgroundColor: activeIndex.value == 1
                                         ? ColorConstants.greeen
                                         : ColorConstants.colorPrimary,
-                                    label: Text("NutritionalBenefits",
+                                    label: const Text("NutritionalBenefits",
                                         style: TextStyle(color: Colors.white))),
                               ),
                               InkWell(
@@ -218,7 +219,7 @@ class ProductDetailView extends GetView<HomeController> {
                             data: dataToDisplay.value,
                             style: {
                               "body": Style(
-                                fontSize: FontSize(SizeConstants.FONT_SIZE),
+                                fontSize: const FontSize(SizeConstants.FONT_SIZE),
                                 fontWeight: FontWeight.normal,
                               ),
                             },
@@ -228,7 +229,7 @@ class ProductDetailView extends GetView<HomeController> {
                     })),
               ));
             } else {
-              return Text("no data found");
+              return  EmptyFailureNoInternetWidget.NoData();
             }
           }),
     );

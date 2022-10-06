@@ -1,25 +1,34 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'dart:convert';
-
-
-
 import 'package:images_picker/images_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:therapeutic/app/commons/utils/permission_utils.dart';
 import 'package:therapeutic/app/commons/utils/validations.dart';
 import 'package:therapeutic/app/commons/widgets/custom_widget.dart';
 import 'package:therapeutic/app/constants/color_constants.dart';
-
+import 'package:therapeutic/app/modules/login/controllers/login_controller.dart';
+import 'package:therapeutic/app/modules/login/views/login_view.dart';
+import 'package:therapeutic/app/routes/app_pages.dart';
 import '../../../commons/utils/dialogs.dart';
+import '../../../commons/utils/shared_pref_names.dart';
 import '../../../constants/size_constants.dart';
+import 'package:get/get.dart';
+
+import '../models/user_register_model.dart';
 
 class SignUp_Screen extends StatefulWidget {
   static String routeName = '/Signup';
+
+  // LoginController loginController = new LoginController(
+  //     USER_EMAIL: "",
+  //     USER_ID: "",
+  //     USER_NAME: "",
+  //     USER_TOKEN: "",
+  //     USER_PASSWORD: "");
 
   @override
   _SignUp_ScreenState createState() => _SignUp_ScreenState();
@@ -31,6 +40,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
   final confirmPasswordController = TextEditingController();
   final userNameController = TextEditingController();
   bool showPwd = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -40,30 +50,62 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
     super.dispose();
   }
 
+  @override
+  void initState() {
+    loginController = Get.find<LoginController>();
+
+    pref.then((SharedPreferences sharedPreferences) {
+      sharedPref = sharedPreferences;
+
+
+
+    }).catchError((error) {
+      SnackBar(
+        content: CustomWidgets.customTextWidget(
+            dataToPrint: "issue in to initiating data"),
+      );
+    });
+    super.initState();
+  }
+
   late String filePath = "";
+  File? imageFile = null;
+  late SharedPreferences sharedPref;
+  Future<SharedPreferences> pref = SharedPreferences.getInstance();
+
+  // late   File _image;
+  late LoginController loginController;
+
   @override
   Widget build(BuildContext context) {
     const String assetName = 'assets/login1.svg';
     var _emailAddress = "";
-    File? imageFile = null;
+
     final _formKey = GlobalKey<FormState>();
+    String path = "";
 
     final picker = ImagePicker();
     void _selectImageFromGallary() async {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       print("picked image ${pickedFile!.path}");
-      String path = pickedFile.path;
+      //_image=pickedFile as File;
+      path = pickedFile.path;
       imageFile = File(path);
       filePath = pickedFile.path;
       print("picked image filePath::: ${path}");
 
       print("picked image filePath ${filePath}");
       print("picked image filePath ${imageFile?.path}");
+
+      print("is file exists... ${imageFile!.uri}");
+      print("is file exists... ${imageFile!.length()}");
       setState(() {});
     }
 
+    print("filePath $filePath");
+
     return Scaffold(
-        backgroundColor: ColorConstants.colorCanvas,
+        //  backgroundColor: ColorConstants.colorCanvas,
         appBar: AppBar(
           title: const Text("Signup"),
         ),
@@ -102,6 +144,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
               //         ),
               //       ),
               //     ),
+
               Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -111,72 +154,120 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Positioned(
-                        top: 100,
-                        // height: MediaQuery.of(context).size.height,
-                        //  left: MediaQuery.of(context).size.width / 2 - 75,
+                      // CircleAvatar(
+                      //   radius: 80.0,
+                      //   backgroundImage: FileImage(imageFile!.path),
+                      // )
 
-                        left: 160,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: CircleAvatar(
-                            radius: 75,
-                            child: imageFile == null
-                                ? IconButton(
-                                    icon: const Icon(Icons.add),
-                                    onPressed: () {
-                                      CommonDialogs.showImageSelectionDialog(
-                                        ctx: context,
-                                        onCameraClick: () async {
-                                          List<Media>? res =
-                                              await ImagesPicker.openCamera(
-                                            // pickType: PickType.video,
-                                            pickType: PickType.image,
-                                            quality: 0.8,
-                                            maxSize: 800,
-                                            // cropOpt: CropOption(
-                                            //   aspectRatio: CropAspectRatio.wh16x9,
-                                            // ),
-                                            maxTime: 15,
-                                          );
-                                          print(res);
-                                          if (res != null) {
-                                            print(res[0].path);
-                                            imageFile = File(res[0].path);
+                      Card(
+                        elevation: 8,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                                width: 160,
+                                height: 160,
+                                //  color: ColorConstants.colorCanvas.withOpacity(0.5),
+                                child: imageFile != null
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Image.file(imageFile!,
+                                            height: 160,
+                                            width: 160,
+                                            fit: BoxFit.fill),
+                                      )
+                                    : IconButton(
+                                        icon: Icon(Icons.add,
+                                            size: 60,
+                                            color: ColorConstants.colorPrimary),
+                                        onPressed: () {
+                                          PermissionUtil.checkPermission(
+                                                  TargetPlatform.android)
+                                              .then((isGranted) {
+                                            if (isGranted) {
+                                              CommonDialogs
+                                                  .showImageSelectionDialog(
+                                                ctx: context,
+                                                onCameraClick: () async {
+                                                  List<Media>? res =
+                                                      await ImagesPicker
+                                                          .openCamera(
+                                                    // pickType: PickType.video,
+                                                    pickType: PickType.image,
+                                                    quality: 0.8,
+                                                    maxSize: 800,
+                                                    // cropOpt: CropOption(
+                                                    //   aspectRatio: CropAspectRatio.wh16x9,
+                                                    // ),
+                                                    maxTime: 15,
+                                                  );
+                                                  print(res);
+                                                  if (res != null) {
+                                                    print(res[0].path);
+                                                    imageFile =
+                                                        File(res[0].path);
 
-                                            filePath = res[0].path;
+                                                    filePath = res[0].path;
 
-                                            setState(() {});
-                                            // setState(() {
-                                            //   path = res[0].thumbPath;
-                                            // });
-                                          }
-                                          Navigator.pop(context);
+                                                    setState(() {});
+                                                    // setState(() {
+                                                    //   path = res[0].thumbPath;
+                                                    // });
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
+                                                onGalleryClick: () async {
+                                                  var status = await Permission
+                                                      .storage.status;
+                                                  if (!status.isGranted) {
+                                                    await Permission.storage
+                                                        .request();
+                                                  }
+                                                  // PermissionUtil.checkPermission(platform)
+                                                  //     .then(
+                                                  //   (isGranted) async {
+                                                  //     if (isGranted != null && isGranted) {
+                                                  _selectImageFromGallary();
+                                                  //     } else {
+                                                  //       print(
+                                                  //           'perimssion not granted...........');
+                                                  //     }
+                                                  //   },
+                                                  // );
+                                                  Navigator.pop(context);
+                                                },
+                                                onCancelClick: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              );
+                                            } else {
+                                              print("not granted");
+                                            }
+                                          });
                                         },
-                                        onGalleryClick: () async {
-                                          // PermissionUtil.checkPermission(platform)
-                                          //     .then(
-                                          //   (isGranted) async {
-                                          //     if (isGranted != null && isGranted) {
-                                          _selectImageFromGallary();
-                                          //     } else {
-                                          //       print(
-                                          //           'perimssion not granted...........');
-                                          //     }
-                                          //   },
-                                          // );
-                                          Navigator.pop(context);
-                                        },
-                                        onCancelClick: () {
-                                          Navigator.pop(context);
-                                        },
-                                      );
-                                    },
-                                  )
-                                : Image.file(imageFile!),
-                          ),
+                                      )),
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              width: 40,
+                              height: 40,
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                color:
+                                    ColorConstants.color_black.withOpacity(0.4),
+                                child: IconButton(
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () {
+                                    imageFile = null;
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+
                       // const SizedBox(
                       //   height: 24,
                       // ),
@@ -194,7 +285,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                       //   "Create new account",
                       //   style: TextStyle(
                       //       fontSize: SizeConstants.FONT_SIZE_HEADER,
-                      //       color: ColorConstants.color_black),
+                      //      ),
                       // ),
 
                       const SizedBox(
@@ -220,8 +311,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                                 return null;
                               },
                               style: const TextStyle(
-                                  fontSize: SizeConstants.FONT_SIZE,
-                                  color: ColorConstants.color_black),
+                                fontSize: SizeConstants.FONT_SIZE,
+                              ),
                               decoration: const InputDecoration(
                                 labelText: "Enter Name",
                                 hintText: " Name ",
@@ -248,8 +339,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                                 return null;
                               },
                               style: const TextStyle(
-                                  fontSize: SizeConstants.FONT_SIZE,
-                                  color: ColorConstants.color_black),
+                                fontSize: SizeConstants.FONT_SIZE,
+                              ),
                               decoration: const InputDecoration(
                                 labelText: "Enter Email Address",
                                 hintText: " Email ",
@@ -272,8 +363,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                               },
                               obscureText: showPwd,
                               style: const TextStyle(
-                                  fontSize: SizeConstants.FONT_SIZE,
-                                  color: ColorConstants.color_black),
+                                fontSize: SizeConstants.FONT_SIZE,
+                              ),
                               decoration: InputDecoration(
                                   labelText: "Enter Password",
                                   hintText: " Password ",
@@ -304,8 +395,8 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                               },
                               obscureText: showPwd,
                               style: const TextStyle(
-                                  fontSize: SizeConstants.FONT_SIZE,
-                                  color: ColorConstants.color_black),
+                                fontSize: SizeConstants.FONT_SIZE,
+                              ),
                               decoration: const InputDecoration(
                                   labelText: "Enter Confirm Password",
                                   hintText: "Confirm Password ",
@@ -365,24 +456,72 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
                               }
                             }
                           }),
-                          child: CustomWidgets.customTextWidget(
-                              dataToPrint: "SignUp",
-                              customColor: ColorConstants.color_white,
-                              customAlignment: Alignment.center),
+                          child: InkWell(
+                            onTap: () async {
+                              var file = await http.MultipartFile.fromPath(
+                                  'userPhoto', filePath);
+
+                              loginController
+                                  .doRegister(
+                                      userNameController.text.trim().toString(),
+                                      emailController.text.trim().toString(),
+                                      passwordController.text.trim(),
+                                      file)
+                                  .then((value) {
+                                print("this is data111...${value.toString()}");
+
+                                // CommonDialogs.showMsgDialog(
+                                //     msg: value.message!);
+                               /* CommonDialogs.showMsgDialog(
+                                    ctx: context,
+                                    onOkClick: () {
+                                      sharedPref.setString(
+                                          ShredPrefNames.USER_VERIFY_EMAIL,
+                                          value.user!.email!).then((value){
+                                            Get.back();
+                                      Get.offAndToNamed(Routes.VERYFY_USER);} );
+
+                                    },
+                                    msg: value.message!,
+                                    isDismissible: true);*/
+                                // Get.offAndToNamed(LoginView.routeName);
+
+                                sharedPref.setString(
+                                    ShredPrefNames.USER_VERIFY_EMAIL,
+                                    value.user!.email!).then((sv) {
+                                  CommonDialogs.showToast(ctx: context,
+                                      msg: value.message!.toString());
+                                  Get.back();
+                                  Get.offAndToNamed(Routes.VERYFY_USER);
+                                });
+
+
+                              });
+                            },
+                            child: CustomWidgets.customTextWidget(
+                                dataToPrint: "SignUp",
+                                customColor: ColorConstants.color_white,
+                                customAlignment: Alignment.center),
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: SizeConstants.SIZEDBOX_10,
                       ),
 
-                      const Text(
-                        "Back to Login",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            //     decorationColor: Color_Constants.color_black,
-                            fontSize: SizeConstants.FONT_SIZE_BUTTON,
-                            fontWeight: FontWeight.bold,
-                            color: ColorConstants.colorPrimary),
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Text(
+                          "Back to Login",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              //     decorationColor: Color_Constants.color_black,
+                              fontSize: SizeConstants.FONT_SIZE_BUTTON,
+                              fontWeight: FontWeight.bold,
+                              color: ColorConstants.colorPrimary),
+                        ),
                       )
                     ],
                   ),

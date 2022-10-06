@@ -9,6 +9,9 @@ abstract class Routes {
   static const PRODUCT_DETAIL = _Paths.PRODUCT_DETAIL;
   static const KEY_TEST = _Paths.KEY_TEST;
   static const NOTES = _Paths.NOTES;
+  static const PROFILE = _Paths.PROFILE;
+  static const REGISTER = _Paths.REGISTER;
+  static const VERYFY_USER = _Paths.VERYFY_USER;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const PRODUCT_DETAIL = '/product-detail';
   static const KEY_TEST = '/key-test';
   static const NOTES = '/notes';
+  static const PROFILE = '/profile';
+  static const REGISTER = '/register';
+  static const VERYFY_USER = '/veryfy_user';
 }

@@ -6,9 +6,9 @@ import 'package:permission_handler/permission_handler.dart';
 class PermissionUtil {
   static Future<bool> checkPermission(TargetPlatform platform) async {
     if (platform == TargetPlatform.android) {
-      bool isAllPermissionGranted = await _requestPermission();
+      bool isAllPermissionGranted = await requestPermission();
       if (!isAllPermissionGranted) {
-        isAllPermissionGranted = await _requestPermission();
+        isAllPermissionGranted = await requestPermission();
         if (isAllPermissionGranted) {
           return true;
         }
@@ -21,10 +21,10 @@ class PermissionUtil {
     return false;
   }
 
-  static Future<bool> _requestPermission() async {
+  static Future<bool> requestPermission() async {
     Map<Permission, PermissionStatus> permissionStatusesMap = await [
       Permission.storage,
-      Permission.requestInstallPackages,
+      // Permission.requestInstallPackages,
       Permission.camera,
       Permission.microphone
     ].request();

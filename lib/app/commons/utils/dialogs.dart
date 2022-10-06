@@ -199,7 +199,8 @@ class CommonDialogs {
         middleTextStyle: TextStyle(color: Colors.red),
         confirm: ElevatedButton(
             onPressed: () {
-              Get.offAll(Routes.LOGIN);
+              // Get.offAll(Routes.LOGIN);
+              Get.back();
             },
             child: const Text(
               "Ok",
@@ -238,24 +239,24 @@ class CommonDialogs {
       context: ctx,
       builder: (ctx) => AlertDialog(
         elevation: 12,
-        actions: [
-          // Custom_Widgets.customButtonWidget(
-          //     btnLbl: "Cancel",
-          //     onCustomClick: {print("button clicked..."), onCancelClick()}),
-          // Custom_Widgets.customButtonWidget(
-          //   btnLbl: "Ok",
-          // ),
-
-          ElevatedButton(
-              onPressed: () {
-                onOkClick();
-              },
-              child: CustomWidgets.customTextWidget(
-                  dataToPrint: "OK",
-                  customAlignment: Alignment.center,
-                ))
-          // ),
-        ],
+        // actions: [
+        //   // Custom_Widgets.customButtonWidget(
+        //   //     btnLbl: "Cancel",
+        //   //     onCustomClick: {print("button clicked..."), onCancelClick()}),
+        //   // Custom_Widgets.customButtonWidget(
+        //   //   btnLbl: "Ok",
+        //   // ),
+        //
+        //   ElevatedButton(
+        //       onPressed: () {
+        //         onOkClick();
+        //       },
+        //       child: CustomWidgets.customTextWidget(
+        //           dataToPrint: "OK",
+        //           customAlignment: Alignment.center,
+        //         ))
+        //   // ),
+        // ],
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
