@@ -56,9 +56,6 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
 
     pref.then((SharedPreferences sharedPreferences) {
       sharedPref = sharedPreferences;
-
-
-
     }).catchError((error) {
       SnackBar(
         content: CustomWidgets.customTextWidget(
@@ -472,7 +469,7 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
 
                                 // CommonDialogs.showMsgDialog(
                                 //     msg: value.message!);
-                               /* CommonDialogs.showMsgDialog(
+                                /* CommonDialogs.showMsgDialog(
                                     ctx: context,
                                     onOkClick: () {
                                       sharedPref.setString(
@@ -488,14 +485,16 @@ class _SignUp_ScreenState extends State<SignUp_Screen> {
 
                                 sharedPref.setString(
                                     ShredPrefNames.USER_VERIFY_EMAIL,
-                                    value.user!.email!).then((sv) {
-                                  CommonDialogs.showToast(ctx: context,
+                                    value.user!.email!);
+                                sharedPref
+                                    .setInt(ShredPrefNames.STEP_CLEARED, 1)
+                                    .then((sv) {
+                                  CommonDialogs.showToast(
+                                      ctx: context,
                                       msg: value.message!.toString());
                                   Get.back();
                                   Get.offAndToNamed(Routes.VERYFY_USER);
                                 });
-
-
                               });
                             },
                             child: CustomWidgets.customTextWidget(

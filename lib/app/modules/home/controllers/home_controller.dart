@@ -35,7 +35,7 @@ class HomeController extends GetxController {
   }
 
   Future<List<productModel.Data>> fetchFoodProducts(String catName,
-      [int limit = 10]) {
+      [int limit = 20]) {
     return typeProvider!.fetchFoodProducts(catName, limit);
   }
 

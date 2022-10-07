@@ -33,7 +33,8 @@ class TypeProvider extends GetConnect {
     }
   }
 
-  Future<List<productModel.Data>> fetchFoodProducts(String catName,int limit) async {
+  Future<List<productModel.Data>> fetchFoodProducts(
+      String catName, int limit) async {
     /*final response =
         await get('http://192.168.30.222:5000/food/fetchFoodProducts',);
     if (response.statusCode == 200) {
@@ -46,15 +47,14 @@ class TypeProvider extends GetConnect {
       throw new Exception();
     }*/
 
-  //  var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+    //  var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     var headers = {'Authorization': Config.token};
     var request = http.Request(
         'GET', Uri.parse(Config.baseUrl + 'food/fetchFoodProducts'));
-    if(catName.isNotEmpty) {
+    if (catName.isNotEmpty) {
       request.bodyFields = {'type': catName};
-    }
-    else{
-      request.bodyFields = {'limit': '10'};
+    } else {
+      request.bodyFields = {'limit': limit.toString()};
     }
     request.headers.addAll(headers);
 
@@ -68,12 +68,10 @@ class TypeProvider extends GetConnect {
         productModel.ProductModel model = new productModel.ProductModel();
         model = productModel.ProductModel.fromJson(json.decode(res.toString()));
         return model.data!;
-      }catch(e)
-    {
-      print("in to else11fetch product ${e.toString()}");
-      throw new Exception(e);
-    }
-
+      } catch (e) {
+        print("in to else11fetch product ${e.toString()}");
+        throw new Exception(e);
+      }
     } else {
       print("in to else11111****...");
       throw new Exception();
@@ -81,7 +79,6 @@ class TypeProvider extends GetConnect {
   }
 
   Future<ProductDetailModel> fetchFoodProductDetail(String prodId) async {
-
     var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
     var request = http.Request(
         'GET', Uri.parse(Config.baseUrl + 'food/fetchFoodProducts'));

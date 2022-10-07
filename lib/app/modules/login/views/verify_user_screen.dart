@@ -24,7 +24,7 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
   late SharedPreferences sharedPref;
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
   LoginController? loginController;
-  late String userEmail;
+  String userEmail = "";
 
   @override
   void initState() {
@@ -33,6 +33,7 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
     pref.then((SharedPreferences sharedPreferences) {
       sharedPref = sharedPreferences;
       userEmail = sharedPref.getString(ShredPrefNames.USER_VERIFY_EMAIL)!;
+      setState(() {});
     }).catchError((error) {
       SnackBar(
         content: CustomWidgets.customTextWidget(
@@ -58,8 +59,13 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Submit OTP you may find on $userEmail"),
-
+                Text(
+                  "Submit OTP, You may find on $userEmail",
+                  style: TextStyle(fontSize: SizeConstants.FONT_SIZE_16),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -77,9 +83,10 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
                       return null;
                     },*/
                     keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: SizeConstants.FONT_SIZE,
-                        color: ColorConstants.color_black),
+                      ),
                     decoration: const InputDecoration(
                       // labelText: "Enter Email Address",
                       // hintText: " Email ",
@@ -94,29 +101,34 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
                 Padding(
                   padding: const EdgeInsets.all(SizeConstants.SIZEDBOX_10),
                   child: ElevatedButton(
-                    onPressed: () {loginController!
-                        .doVerifyNewUser(userEmail,controller1.text.toString().trim())
-                        .then((VerifyUserModel value) {
-                      if (value.status == 1) {
-                        CommonDialogs.showMsgDialog(
-                            ctx: context,
-                            onOkClick: () {
-                              print("on ok clicked...");
-                              Get.back();
-                               Get.offAndToNamed(Routes.LOGIN);
-                            },
-                            isDismissible: false,
-                            msg: value.message!);
-                      } else {
-                        CommonDialogs.showMsgDialog(
-                            ctx: context,
-                            onOkClick: () {
-                              Get.back();
-                            },
-                            isDismissible: false,
-                            msg: value.message!);
-                      }
-                    });},
+                    onPressed: () {
+                      loginController!
+                          .doVerifyNewUser(
+                              userEmail, controller1.text.toString().trim())
+                          .then((VerifyUserModel value) {
+                        if (value.status == 1) {
+                          CommonDialogs.showMsgDialog(
+                              ctx: context,
+                              onOkClick: () {
+                                sharedPref.setInt(
+                                    ShredPrefNames.STEP_CLEARED, 2);
+                                print("on ok clicked...");
+                                Get.back();
+                                Get.offAndToNamed(Routes.LOGIN);
+                              },
+                              isDismissible: false,
+                              msg: value.message!);
+                        } else {
+                          CommonDialogs.showMsgDialog(
+                              ctx: context,
+                              onOkClick: () {
+                                Get.back();
+                              },
+                              isDismissible: false,
+                              msg: value.message!);
+                        }
+                      });
+                    },
                     child: CustomWidgets.customTextWidget(
                         dataToPrint: "Send OTP",
                         customColor: ColorConstants.color_white,
@@ -137,7 +149,7 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
                               ctx: context,
                               onOkClick: () {
                                 Get.back();
-                              //  Get.offAndToNamed(Routes.LOGIN);
+                                //  Get.offAndToNamed(Routes.LOGIN);
                               },
                               isDismissible: false,
                               msg: value.message!);
@@ -152,7 +164,13 @@ class _VerifyUser_ScreenState extends State<VerifyUser_Screen> {
                         }
                       });
                     },
-                    child: Text("resend OTP "))
+                    child: Text("resend OTP")),
+                InkWell(
+                    onTap: () {
+                      sharedPref.setInt(ShredPrefNames.STEP_CLEARED, 0);
+                      Get.offAndToNamed(Routes.REGISTER);
+                    },
+                    child: Text("SignUp"))
               ],
             ),
           ),

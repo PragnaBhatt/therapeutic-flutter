@@ -39,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
   late SharedPreferences sharedPref;
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
   late String userPassword = "", userEmail = "";
-
+  late int stepCleared = -1;
   LoginController? loginController;
 
   @override
@@ -51,14 +51,19 @@ class _LoginViewState extends State<LoginView> {
       sharedPref = sharedPreferences;
       userEmail = sharedPref.getString(ShredPrefNames.USER_EMAIL)!;
       userPassword = sharedPref.getString(ShredPrefNames.USER_PASSWORD)!;
+      stepCleared = sharedPref.getInt(ShredPrefNames.STEP_CLEARED)!;
       if (userEmail != null &&
           userPassword != null &&
           userEmail.isNotEmpty &&
-          userPassword.isNotEmpty) {
+          userPassword.isNotEmpty)
+          {
+          //&& stepCleared == 3) {
         emailController.text = userEmail;
         passwordController.text = userPassword;
         //   setState(() {});
         // doLogin(_formKey);
+      } else if (stepCleared == 1) {
+        Get.offAndToNamed(Routes.VERYFY_USER);
       }
     }).catchError((error) {
       SnackBar(
@@ -93,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
               ShredPrefNames.USER_TOKEN, value.user!.tokens![0]!.token!);
           sharedPref.setString(ShredPrefNames.USER_PASSWORD,
               passwordController.text.toString().trim());
-
+          sharedPref.setInt(ShredPrefNames.STEP_CLEARED, 3);
           Config.token = value.user!.tokens![0]!.token!;
 
           Get.put(LoginController(
@@ -210,6 +215,7 @@ class _LoginViewState extends State<LoginView> {
   bool isSignIn = false;
   bool google = false;
   bool isObscure = false;
+
   @override
   Widget build(BuildContext context) {
     const String assetName = 'assets/login.svg';
@@ -406,9 +412,7 @@ class _LoginViewState extends State<LoginView> {
                                           onTap: () {
                                             print("clicked....");
                                             isObscure = !isObscure;
-                                            setState(() {
-
-                                            });
+                                            setState(() {});
                                           },
                                           child: Icon(isObscure
                                               ? Icons.visibility_off

@@ -11,10 +11,12 @@ class TabWidget extends StatelessWidget {
 
 
       TabBar(
+
         labelColor: Colors.deepOrange,
         unselectedLabelColor: Colors.black,
         labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
         tabs: [
+
           Padding(
               padding: const EdgeInsets.only(top: 12, bottom: 12),
               child: Column(
@@ -44,11 +46,11 @@ class TabWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.star, size: 20),
+                  Icon(Icons.food_bank_outlined, size: 20),
                   SizedBox(
                     height: 4,
                   ),
-                  Text('Favourite'),
+                  Text('Diseases'),
                 ],
               )),
           Padding(
@@ -56,6 +58,7 @@ class TabWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+
                   Icon(Icons.person, size: 20),
                   SizedBox(
                     height: 4,

@@ -5,4 +5,5 @@ class ShredPrefNames {
   static String USER_TOKEN = "USER_TOKEN";
   static String USER_VERIFY_EMAIL = "USER_VERIFY_EMAIL";
   static String USER_PASSWORD = "USER_PASSWORD";
+  static String STEP_CLEARED="STEP_CLEARED";
 }

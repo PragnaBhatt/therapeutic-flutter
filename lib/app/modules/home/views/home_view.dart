@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:therapeutic/app/modules/diseases/views/diseases_view.dart';
 import 'package:therapeutic/app/modules/home/type_model.dart' as type;
 import 'package:therapeutic/app/modules/home/views/widgets/home_widget.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/tab_widget.dart';
@@ -24,6 +25,7 @@ class HomeView extends GetView<HomeController> {
           title: const Text('Dashboard'),
           centerTitle: true,
         ),
+
         bottomNavigationBar: Card(
           elevation: 4,
           child: TabWidget(),
@@ -31,6 +33,7 @@ class HomeView extends GetView<HomeController> {
         body: SafeArea(
 
           child: TabBarView(
+
             children: [
               FutureBuilder(
                   // future: typeData,
@@ -49,7 +52,7 @@ class HomeView extends GetView<HomeController> {
                   }),
              // Text("1"),
               NotesView(),
-              Text("2"),
+              DiseasesView(),
               ProfileView(),
             ],
           ),

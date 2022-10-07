@@ -273,8 +273,7 @@ class CommonDialogs {
             ),
             InkWell(
               onTap: () {
-                print("on camera clicked ");
-                onOkClick();
+
               },
               child: Row(
                 children: [
@@ -286,10 +285,14 @@ class CommonDialogs {
                       child: CustomWidgets.customTextWidget(dataToPrint: msg)),
                 ],
               ),
+              
             ),
             const SizedBox(
               height: 20,
             ),
+            
+            ElevatedButton(onPressed: (){  print("on camera clicked ");
+            onOkClick();}, child: Text("OK"))
           ],
         ),
       ),
