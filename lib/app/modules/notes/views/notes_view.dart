@@ -19,6 +19,7 @@ class NotesView extends GetView<NotesController> {
 
   @override
   Widget build(BuildContext context) {
+    print("on build of notes view...");
     Future<List<notesModel.AllNote>> notesFuture = controller.getNotes();
     RxList<notesModel.AllNote> allNotes = controller.allNotes;
     return Scaffold(
@@ -155,17 +156,23 @@ class NotesView extends GetView<NotesController> {
                                   child: InkWell(
                                     onTap: () {
                                       showModalBottomSheet(
+
                                           context: context,
                                           builder: (ctx) {
                                             TextEditingController ctrl=TextEditingController(text: allNotes[index]
                                                         .description! );
-                                            return AddNoteWidget(
-                                              note:
-                                                  allNotes[index].description!,
-                                              noteId: allNotes[index].sId!,
-                                              forProduct: allNotes[index]
-                                                  .forProduct!
-                                                  .sId!,ctrl: ctrl,
+                                            return Padding(
+                                              padding: MediaQuery.of(context).viewInsets,
+
+                                              child: AddNoteWidget(
+                                                note:
+                                                    allNotes[index].description!,
+                                                noteId: allNotes[index].sId!,
+                                                forProduct: allNotes[index]
+                                                    .forProduct!
+                                                    .sId!,ctrl: ctrl,
+
+                                              ),
                                             );
                                           });
                                     },

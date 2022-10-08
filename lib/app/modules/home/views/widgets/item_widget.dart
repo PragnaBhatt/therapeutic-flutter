@@ -80,6 +80,7 @@ class ItemWidget extends GetView<NotesController> {
                                             ? "-1"
                                             : data.noteOfUser![0].sId!,
                                         forProduct: data.sId!,ctrl:ctrl ,
+
                                       ),
                                     );
                                   });},
