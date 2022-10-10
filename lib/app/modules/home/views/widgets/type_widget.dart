@@ -30,7 +30,7 @@ class TypeWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           child: GridTile(
             child: Image.network(
-              '${Config.baseUrl}images/1.jpg',
+              '${Config.baseUrlImages}${type!.image}${Config.imagesExtenstion}',
 // height: double.infinity,
 //                 width: double.infinity,
               fit: BoxFit.cover,
@@ -38,10 +38,8 @@ class TypeWidget extends StatelessWidget {
             footer: Container(
               height: 32,
               color: ColorConstants.color_black.withOpacity(0.5),
-              child: Text(
-                "${type.name} (${type.total.toString()})",  maxLines: 2,
-                  textAlign: TextAlign.center
-              ),
+              child: Text("${type.name} (${type.total.toString()})",
+                  maxLines: 2, textAlign: TextAlign.center),
             ),
           ),
         )

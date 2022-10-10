@@ -2,27 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:therapeutic/app/commons/widgets/empty_failure_nointernet_widgetdart.dart';
 import 'package:therapeutic/app/constants/size_constants.dart';
+import 'package:therapeutic/app/modules/diseases/controllers/diseases_controller.dart';
 import 'package:therapeutic/app/modules/home/controllers/home_controller.dart';
 import 'package:therapeutic/app/modules/notes/controllers/notes_controller.dart';
 import 'package:therapeutic/app/modules/notes/widgets/add_notes_widget.dart';
 
+import '../../../config/config.dart';
 import '../../../constants/color_constants.dart';
 import '../../models/product_detail_model.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class ProductDetailView extends GetView<HomeController> {
   ProductDetailView({Key? key}) : super(key: key);
+  RxString name = "".obs;
   NotesController noteController = Get.find<NotesController>();
+  DiseasesController diseasesController = Get.find<DiseasesController>();
+
   @override
   Widget build(BuildContext context) {
+    late Future<ProductDetailModel> data;
     String prodId = Get.arguments;
-    Future<ProductDetailModel> data = controller.fetchFoodProductDetail(prodId);
+    // String diseases = Get.arguments.name;
+    // if (prodId != null && prodId.toString().isNotEmpty) {
+    data = controller.fetchFoodProductDetail(prodId);
+    // }
+    /* if (diseases != null && diseases.toString().isNotEmpty) {
+      diseasesController.getFoodForDiseases(diseases).then((value) {
+        data = ProductDetailModel.fromJson(value[0].results![0].toJson())
+            as Future<ProductDetailModel>;
+      });
+    }*/
     RxString dataToDisplay = "".obs;
     RxInt activeIndex = 100.obs;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Get.arguments!!"),
-      ),
+          // title: Obx(() {
+          //   return Text(name.value);
+          // }),
+          ),
       body: FutureBuilder(
           future: data,
           builder: (context, prodDetailSnap) {
@@ -30,19 +47,18 @@ class ProductDetailView extends GetView<HomeController> {
               return Text(prodDetailSnap.error.toString());
             } else if (prodDetailSnap.connectionState ==
                 ConnectionState.waiting) {
-              return Center(child: const CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (prodDetailSnap.hasData) {
+              name.value = prodDetailSnap.data!.data!.name!;
               dataToDisplay.value = prodDetailSnap.data!.data!.description!;
               activeIndex.value = 0;
 
-              
               return SingleChildScrollView(
                   child: Center(
                 child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Obx(() {
-
-                        bool isNoteAvialbale = false;
+                      bool isNoteAvialbale = false;
                       String noteId = "-1";
                       String noteContent = "";
                       noteController.allNotes.indexWhere(
@@ -61,10 +77,17 @@ class ProductDetailView extends GetView<HomeController> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.network(
-                            "https://png.pngtree.com/png-vector/20210929/ourmid/pngtree-404-not-found-mdern-transparent-background-png-image_3963794.png",
-                            height: 250,
-                            width: 250,
+                          Card(
+                            elevation: 6,
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Image.network(
+                                '${Config.baseUrlImages}${prodDetailSnap.data!.data!.image}${Config.imagesExtenstion}',
+                                height: 250,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                           Text(
                             prodDetailSnap.data!.data!.name!,
@@ -114,12 +137,12 @@ class ProductDetailView extends GetView<HomeController> {
                                     backgroundColor: activeIndex.value == 2
                                         ? ColorConstants.greeen
                                         : ColorConstants.colorPrimary,
-                                    label:const  Text("HealthBenefits",
+                                    label: const Text("HealthBenefits",
                                         style: TextStyle(color: Colors.white))),
                               ),
                             ],
                           ),
-                        const   SizedBox(
+                          const SizedBox(
                             height: 8,
                           ),
                           Row(
@@ -155,19 +178,17 @@ class ProductDetailView extends GetView<HomeController> {
                               ),
                             ],
                           ),
-                          
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 TextButton.icon(
                                     onPressed: () {
-                                    
                                       showModalBottomSheet(
                                           isScrollControlled: true,
                                           elevation: 4,
                                           context: context,
                                           builder: (ctx) {
-                                             TextEditingController ctrl =
+                                            TextEditingController ctrl =
                                                 TextEditingController(
                                                     text: noteContent);
                                             return Padding(
@@ -176,24 +197,26 @@ class ProductDetailView extends GetView<HomeController> {
                                               child: AddNoteWidget(
                                                 // note: data!.noteOfUser!.isNotEmpty ? data.noteOfUser![0].description:"" );
                                                 note: noteContent,
-                                                noteId:noteId,
+                                                noteId: noteId,
                                                 forProduct: prodDetailSnap
-                                                    .data!.data!.sId!, ctrl: ctrl,
+                                                    .data!.data!.sId!,
+                                                ctrl: ctrl,
                                               ),
                                             );
                                           });
                                     },
-                                    icon:  Icon(
+                                    icon: Icon(
                                       Icons.note_alt_outlined,
-                                      color: 
-                                      !isNoteAvialbale?
-                                      ColorConstants.colorPrimary1:ColorConstants.greeen,
+                                      color: !isNoteAvialbale
+                                          ? ColorConstants.colorPrimary1
+                                          : ColorConstants.greeen,
                                     ),
-                                    label:  Text(
-                                      !isNoteAvialbale ?
-                                      "Add Note":"View Note",
+                                    label: Text(
+                                      !isNoteAvialbale
+                                          ? "Add Note"
+                                          : "View Note",
                                       style: TextStyle(
-                                   color:       !isNoteAvialbale
+                                          color: !isNoteAvialbale
                                               ? ColorConstants.colorPrimary1
                                               : ColorConstants.greeen,
                                           fontSize: SizeConstants.FONT_SIZE),
@@ -219,7 +242,8 @@ class ProductDetailView extends GetView<HomeController> {
                             data: dataToDisplay.value,
                             style: {
                               "body": Style(
-                                fontSize: const FontSize(SizeConstants.FONT_SIZE),
+                                fontSize:
+                                    const FontSize(SizeConstants.FONT_SIZE),
                                 fontWeight: FontWeight.normal,
                               ),
                             },
@@ -229,7 +253,7 @@ class ProductDetailView extends GetView<HomeController> {
                     })),
               ));
             } else {
-              return  EmptyFailureNoInternetWidget.NoData();
+              return EmptyFailureNoInternetWidget.NoData();
             }
           }),
     );

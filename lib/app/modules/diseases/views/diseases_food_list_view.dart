@@ -39,13 +39,25 @@ class DiseasesFoodListView extends GetView<DiseasesController> {
                           onTap: () {
                             // Get.toNamed(Routes.DISEASES_FOOD,
                             //     arguments: snapshot.data![pos].name!);
+
+                            /* Get.toNamed(Routes.PRODUCT_DETAIL, arguments: {
+                              "name": snapshot.data![pos].diseases
+                            });*/
+                            print(
+                                "id..... ${snapshot.data![pos].results![0]!.sId}");
+                            // Get.toNamed(Routes.PRODUCT_DETAIL, arguments: {
+                            //   "id": snapshot.data![pos].results![0]!.sId
+                            // });
+                            Get.toNamed(Routes.PRODUCT_DETAIL,
+                                arguments:
+                                    snapshot.data![pos].results![0]!.sId);
                           },
                           child: Row(
                             children: [
                               ClipRRect(
                                   borderRadius: BorderRadius.circular(4),
                                   child: Image.network(
-                                    "${Config.baseUrl}images/1.jpg",
+                                    '${Config.baseUrlImages}${snapshot.data![pos].image}${Config.imagesExtenstion}',
                                     height: 60,
                                     width: 60,
                                     fit: BoxFit.cover,

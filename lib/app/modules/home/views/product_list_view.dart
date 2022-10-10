@@ -19,7 +19,7 @@ class ProductListView extends GetView<HomeController> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(""),
+          title: Text(catname),
           centerTitle: true,
         ),
         body: Padding(
@@ -35,10 +35,10 @@ class ProductListView extends GetView<HomeController> {
                 } else if (productSnapData.hasData) {
                   return GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisSpacing: 4,
+                          crossAxisSpacing: 4,
                           mainAxisSpacing: 4,
                           crossAxisCount: 3),
-                      itemCount:  productSnapData.data!.length,
+                      itemCount: productSnapData.data!.length,
                       itemBuilder: (ctx, pos) {
                         // return Text(productSnapData.data![pos].name!);
                         return ProductListWidget(productSnapData.data![pos]);
