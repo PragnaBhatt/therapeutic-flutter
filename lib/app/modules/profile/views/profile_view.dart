@@ -43,6 +43,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    print("image....${Config.baseUrl}${userPhoto}");
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Center(
@@ -52,11 +53,11 @@ class _ProfileViewState extends State<ProfileView> {
           //   crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  '${Config.baseUrlImages}${userPhoto}${Config.imagesExtenstion}',
-                  height: 60,
-                  width: 60,
+                  '${Config.baseUrl}${userPhoto}',
+                  height: 160,
+                  width: 160,
                   fit: BoxFit.cover,
                 )),
             SizedBox(
@@ -72,7 +73,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Divider(
               height: 2,
-              color: ColorConstants.colorPrimary,
+              // color: ColorConstants.colorPrimary,
             ),
             SizedBox(
               height: 10,

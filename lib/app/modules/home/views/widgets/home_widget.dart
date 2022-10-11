@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:therapeutic/app/constants/color_constants.dart';
+import 'package:therapeutic/app/constants/size_constants.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/item_widget.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/type_widget.dart';
 
@@ -16,11 +17,24 @@ class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: SingleChildScrollView(
           child: snapData.hasData
               ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Top Categories",
+                      style: TextStyle(fontSize: SizeConstants.FONT_SIZE_16),
+                      textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
                     Container(
                       height: 264,
                       child: GridView.builder(
@@ -34,7 +48,15 @@ class HomeWidget extends StatelessWidget {
                             return TypeWidget(type: snapData.data![0][pos]!);
                           }),
                     ),
-                    SizedBox(
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "Recent Top Items",
+                      style: TextStyle(fontSize: SizeConstants.FONT_SIZE_16),
+                      textAlign: TextAlign.start,
+                    ),
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -77,6 +99,14 @@ class HomeWidget extends StatelessWidget {
                               ),
                             );
                           }),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "You may also like",
+                      style: TextStyle(fontSize: SizeConstants.FONT_SIZE_16),
+                      textAlign: TextAlign.start,
                     ),
                     SizedBox(
                       height: 10,
