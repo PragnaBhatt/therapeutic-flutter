@@ -37,157 +37,204 @@ class NotesView extends GetView<NotesController> {
           ? EmptyFailureNoInternetWidget.NoData()
           : Container(
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: GridView.builder(
+                padding: const EdgeInsets.all(4.0),
+                child: ListView.builder(
                   itemCount: allNotes.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 2,
-                    crossAxisSpacing: 2,
-                  ),
+                  // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //   crossAxisCount: 1,
+                  //   mainAxisSpacing: 2,
+                  //   crossAxisSpacing: 2,
+                  // ),
                   itemBuilder: (BuildContext context, int index) {
-                    return Stack(
-                      children: [
-                        Card(
-                          elevation: 2,
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Stack(
+                        children: [
+                          Card(
+                            margin: const EdgeInsets.only(top: 20.0),
+                            elevation: 2,
 // color: ColorConstants.brown_shade2,
-                          color: Color((math.Random().nextDouble() * 0xFFdb87b4)
-                                  .toInt())
-                              .withOpacity(0.1),
+                            color: Color(
+                                    (math.Random().nextDouble() * 0xFFdb87b4)
+                                        .toInt())
+                                .withOpacity(0.1),
 
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 4, right: 4, top: 16),
-                            child: ListTile(
-                              title: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    checkDate(allNotes[index].updatedAt!),
-                                    textAlign: TextAlign.end,
-                                    style:const TextStyle(
-                                        fontSize: SizeConstants.FONT_SIZE_12),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 4, right: 4, top: 16),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(40),
+                                child: ListTile(
+                                  title: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const CircleAvatar(
+                                          radius: 28,
+                                          backgroundColor:
+                                              ColorConstants.colorCanvas,
+                                          child: Icon(
+                                            Icons.bookmark_add,
+                                            color:
+                                                ColorConstants.colorPrimaryDark,
+                                            size: 48,
+                                          )),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+
+
+                                      Expanded(
+                                        child: Column(
+                                         // crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+
+                                            Text(
+                                              " ${allNotes[index].forProduct!.name!}  ",
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  fontSize:
+                                                  SizeConstants.FONT_SIZE_14),
+                                            ),
+                                            SizedBox(
+                                              height: 4,
+                                            ),
+                                            Text(
+                                              checkDate(allNotes[index].updatedAt!),
+                                              textAlign: TextAlign.end,
+                                              style: const TextStyle(
+                                                  fontSize:
+                                                      SizeConstants.FONT_SIZE_12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                    ],
                                   ),
-                                  const CircleAvatar(
-                                      radius: 30,
-                                      backgroundColor:
-                                          ColorConstants.colorCanvas,
-                                      child: Icon(
-                                        Icons.bookmark_add,
-                                        color: ColorConstants.colorPrimaryDark,
-                                        size: 30,
-                                      ))
+                                  // header: Icon(Icons.fastfood_sharp,size: 40),
+                                  // footer: Row(children: [ElevatedButton.icon(onPressed: (){}, icon:Icon( Icons.delete), label: Text("Delete"))],),
+
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4, right: 4, top: 4, bottom: 4),
+                                    //center
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Divider(height: 3,color: ColorConstants.greeen,),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(allNotes[index].description!,
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                                color: ColorConstants.color_white
+                                                    .withOpacity(1),
+                                                fontSize: SizeConstants.FONT_SIZE,
+                                                wordSpacing: 3.0)),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          //),
+                          Positioned(
+                            top: -4,
+                            right: -4,
+                            child:
+
+                                //  Icon(Icons.ac_unit,size: 60,color: ColorConstants.colorIconColor,)
+                                Card(
+                              elevation: 4,
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(6.0)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // CommonDialogs.showGetDialog(
+                                        //     msg: value.message!);
+
+                                        CommonDialogs.showMsgDialog2(
+                                            ctx: context,
+                                            msg:
+                                                "Are you sure to remove note from ${allNotes[index].forProduct!.name!} ?",
+                                            onOkClick: () {
+                                              Get.back();
+
+                                              controller
+                                                  .deleteNote(
+                                                      allNotes[index].sId!)
+                                                  .then((DeleteNoteModel dn) {
+                                                if (dn.status == 1) {
+                                                  allNotes.removeAt(index);
+                                                }
+                                                CommonDialogs.showToast(
+                                                    ctx: context,
+                                                    msg: dn.message!);
+                                              });
+                                            },
+                                            onCancelClick: () {
+                                              Get.back();
+                                            },
+                                            isDismissible: false);
+                                      },
+                                      child: const Icon(
+                                        Icons.delete,
+                                        size: 24,
+                                        color: ColorConstants.colorPrimary,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6.0)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (ctx) {
+                                              TextEditingController ctrl =
+                                                  TextEditingController(
+                                                      text: allNotes[index]
+                                                          .description!);
+                                              return Padding(
+                                                padding: MediaQuery.of(context)
+                                                    .viewInsets,
+                                                child: AddNoteWidget(
+                                                  note: allNotes[index]
+                                                      .description!,
+                                                  noteId: allNotes[index].sId!,
+                                                  forProduct: allNotes[index]
+                                                      .forProduct!
+                                                      .sId!,
+                                                  ctrl: ctrl,
+                                                ),
+                                              );
+                                            });
+                                      },
+                                      child: const Icon(
+                                        Icons.edit,
+                                        size: 24,
+                                        color: ColorConstants.colorPrimary,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
-                              // header: Icon(Icons.fastfood_sharp,size: 40),
-                              // footer: Row(children: [ElevatedButton.icon(onPressed: (){}, icon:Icon( Icons.delete), label: Text("Delete"))],),
-
-                              subtitle: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 4, right: 4, top: 4, bottom: 4),
-                                //center
-                                child: Text(allNotes[index].description!,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: ColorConstants.color_white
-                                            .withOpacity(1),
-                                        fontSize: SizeConstants.FONT_SIZE,
-                                        wordSpacing: 3.0)),
-                              ),
                             ),
                           ),
-                        ),
-                        //),
-                        Positioned(
-                          top: -4,
-                          right: -4,
-                          child:
-
-                              //  Icon(Icons.ac_unit,size: 60,color: ColorConstants.colorIconColor,)
-                              Card(
-                            elevation: 4,
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(6.0)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      // CommonDialogs.showGetDialog(
-                                      //     msg: value.message!);
-
-                                      CommonDialogs.showMsgDialog2(
-                                          ctx: context,
-                                          msg:
-                                              "Are you sure to remove note from ${allNotes[index].forProduct!.name!} ?",
-                                          onOkClick: () {
-                                            Get.back();
-
-                                            controller
-                                                .deleteNote(
-                                                    allNotes[index].sId!)
-                                                .then((DeleteNoteModel dn) {
-                                              if (dn.status == 1) {
-                                                allNotes.removeAt(index);
-                                              }
-                                              CommonDialogs.showToast(
-                                                  ctx: context,
-                                                  msg: dn.message!);
-                                            });
-                                          },
-                                          onCancelClick: () {
-                                            Get.back();
-                                          },
-                                          isDismissible: false);
-                                    },
-                                    child: const Icon(
-                                      Icons.delete,
-                                      size: 24,
-                                      color: ColorConstants.colorPrimary,
-                                    ),
-                                  ),
-                                ),
-                            const    SizedBox(
-                                  height: 6,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.0)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      showModalBottomSheet(
-
-                                          context: context,
-                                          builder: (ctx) {
-                                            TextEditingController ctrl=TextEditingController(text: allNotes[index]
-                                                        .description! );
-                                            return Padding(
-                                              padding: MediaQuery.of(context).viewInsets,
-
-                                              child: AddNoteWidget(
-                                                note:
-                                                    allNotes[index].description!,
-                                                noteId: allNotes[index].sId!,
-                                                forProduct: allNotes[index]
-                                                    .forProduct!
-                                                    .sId!,ctrl: ctrl,
-
-                                              ),
-                                            );
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.edit,
-                                      size: 24,
-                                      color: ColorConstants.colorPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   },
                 ),

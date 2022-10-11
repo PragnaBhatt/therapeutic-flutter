@@ -50,6 +50,7 @@ void main() async {
     //  theme: _buildTheme(Brightness.dark),
       title: "Application",
       initialRoute: AppPages.INITIAL,
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.light,

@@ -8,6 +8,8 @@ class DiseasesController extends GetxController {
   //TODO: Implement DiseasesController
   DiseasesProvider? diseasesProvider;
   final count = 0.obs;
+  List<diseases.Data> list = [];
+  RxList<diseases.Data> filteredList = RxList();
 
   @override
   void onInit() {
@@ -27,7 +29,31 @@ class DiseasesController extends GetxController {
 
   Future<List<diseases.Data>> getDiseases(String id) {
     print("getDiseases.... " + id);
-    return diseasesProvider!.getDiseases();
+    return diseasesProvider!
+        .getDiseases()
+        .then((value) => filteredList.value = list = value);
+  }
+
+  List<diseases.Data> diseasesList(String search) {
+    if (search.isEmpty) {
+      return filteredList.value = list;
+    } else {
+      filteredList=RxList();
+      for (int i = 0; i < list.length; i++) {
+        print("list...${list[i].name} ");
+        if (list[i].name!.toLowerCase().contains(search.toLowerCase()) == 0) {
+          filteredList.add(list[i]);
+        }
+      }
+      print("size.... ${filteredList.length}");
+     /* print(
+          "data.... length $search ${list.where((element) => element.name!.contains("Warts") == 1).toList().length}");
+      print("LIST....${list.length}");
+      return list
+          .where((element) => element.name!.contains("Warts") == 1)
+          .toList();*/
+      return filteredList;
+    }
   }
 
   Future<List<food.Data>> getFoodForDiseases(String name) {

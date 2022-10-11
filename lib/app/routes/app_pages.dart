@@ -73,7 +73,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DISEASES,
-      page: () => const DiseasesView(),
+      page: () =>  DiseasesView(),
       binding: DiseasesBinding(),
     ), GetPage(
       name: _Paths.DISEASES_FOOD,
