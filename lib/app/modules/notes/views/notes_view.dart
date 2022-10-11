@@ -63,7 +63,7 @@ class NotesView extends GetView<NotesController> {
                               padding: const EdgeInsets.only(
                                   left: 4, right: 4, top: 16),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(40),
+                                borderRadius: BorderRadius.circular(20),
                                 child: ListTile(
                                   title: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -82,34 +82,31 @@ class NotesView extends GetView<NotesController> {
                                       SizedBox(
                                         width: 4,
                                       ),
-
-
                                       Expanded(
                                         child: Column(
-                                         // crossAxisAlignment: CrossAxisAlignment.start,
+                                          // crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-
                                             Text(
                                               " ${allNotes[index].forProduct!.name!}  ",
                                               textAlign: TextAlign.center,
                                               style: const TextStyle(
-                                                  fontSize:
-                                                  SizeConstants.FONT_SIZE_14),
+                                                  fontSize: SizeConstants
+                                                      .FONT_SIZE_14),
                                             ),
                                             SizedBox(
                                               height: 4,
                                             ),
                                             Text(
-                                              checkDate(allNotes[index].updatedAt!),
+                                              checkDate(
+                                                  allNotes[index].updatedAt!),
                                               textAlign: TextAlign.end,
                                               style: const TextStyle(
-                                                  fontSize:
-                                                      SizeConstants.FONT_SIZE_12),
+                                                  fontSize: SizeConstants
+                                                      .FONT_SIZE_12),
                                             ),
                                           ],
                                         ),
                                       ),
-
                                     ],
                                   ),
                                   // header: Icon(Icons.fastfood_sharp,size: 40),
@@ -124,16 +121,21 @@ class NotesView extends GetView<NotesController> {
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        Divider(height: 3,color: ColorConstants.greeen,),
+                                        Divider(
+                                          height: 3,
+                                          color: ColorConstants.greeen,
+                                        ),
                                         SizedBox(
                                           height: 4,
                                         ),
                                         Text(allNotes[index].description!,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
-                                                color: ColorConstants.color_white
+                                                color: ColorConstants
+                                                    .color_white
                                                     .withOpacity(1),
-                                                fontSize: SizeConstants.FONT_SIZE,
+                                                fontSize:
+                                                    SizeConstants.FONT_SIZE,
                                                 wordSpacing: 3.0)),
                                       ],
                                     ),
@@ -151,12 +153,13 @@ class NotesView extends GetView<NotesController> {
                                 //  Icon(Icons.ac_unit,size: 60,color: ColorConstants.colorIconColor,)
                                 Card(
                               elevation: 4,
-                              child: Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(6.0)),
-                                    child: InkWell(
+                              child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(8.0)),
+                                child: Column(
+
+                                  children: [
+                                    InkWell(
                                       onTap: () {
                                         // CommonDialogs.showGetDialog(
                                         //     msg: value.message!);
@@ -185,20 +188,19 @@ class NotesView extends GetView<NotesController> {
                                             },
                                             isDismissible: false);
                                       },
-                                      child: const Icon(
-                                        Icons.delete,
-                                        size: 24,
-                                        color: ColorConstants.colorPrimary,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: const Icon(
+                                          Icons.delete,
+                                          size: 24,
+                                          color: ColorConstants.colorPrimary,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(6.0)),
-                                    child: InkWell(
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    InkWell(
                                       onTap: () {
                                         showModalBottomSheet(
                                             context: context,
@@ -222,14 +224,17 @@ class NotesView extends GetView<NotesController> {
                                               );
                                             });
                                       },
-                                      child: const Icon(
-                                        Icons.edit,
-                                        size: 24,
-                                        color: ColorConstants.colorPrimary,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: const Icon(
+                                          Icons.edit,
+                                          size: 24,
+                                          color: ColorConstants.colorPrimary,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

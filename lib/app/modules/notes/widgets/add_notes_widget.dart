@@ -58,72 +58,79 @@ class _AddNoteWidgetState extends State<AddNoteWidget> {
     return Padding(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          TextFormField(
-            maxLines: 10,
-            minLines: 10,
-            //  controller: widget.ctrl,
-            controller: ctrlLocal,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                if (widget.noteId.compareTo("-1") != 0) {
-                  widget.controller
-                      .updateNote(
-                    widget.noteId,
-                    widget.forProduct,
-                    ctrlLocal.text,
-                  )
-                      .then((UpdateNoteModel value) {
-                    print(
-                        "ID::: ${widget.controller.allNotes.indexOf(value.note!.sId)}");
+      child: ClipRRect(
+          borderRadius: const BorderRadius.all(
+              Radius.circular(10.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              TextFormField(
+                maxLines: 12,
+                minLines: 12,
+                //  controller: widget.ctrl,
+                controller: ctrlLocal,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (widget.noteId.compareTo("-1") != 0) {
+                      widget.controller
+                          .updateNote(
+                        widget.noteId,
+                        widget.forProduct,
+                        ctrlLocal.text,
+                      )
+                          .then((UpdateNoteModel value) {
+                        print(
+                            "ID::: ${widget.controller.allNotes.indexOf(value.note!.sId)}");
 // controller.allNotes.value.
 
-                    widget.controller.allNotes.removeAt(widget.noteIndex);
-                    //    widget.controller.allNotes.removeAt(widget.noteIndex);
-                    widget.controller.allNotes.add(noteModel.AllNote(
-                        description: value.note!.description!,
-                        createdAt: value.note!.createdAt!,
-                        byUser: noteModel.ByUser.fromJson(
-                            value.note!.byUser!.toJson()),
-                        forProduct: noteModel.ForProduct.fromJson(
-                            value.note!.forProduct!.toJson()),
-                        iV: value.note!.iV!,
-                        sId: value.note!.sId!,
-                        updatedAt: value.note!.updatedAt!));
-                    Get.back();
-                  });
-                } else {
-                  widget.controller
-                      .createNote(
-                    widget.forProduct,
-                    ctrlLocal.text,
-                  )
-                      .then((CreateNoteModel value) {
-                    CommonDialogs.showToast(ctx: context, msg: value!.message!);
-                    if (value.status == 1) {
+                        widget.controller.allNotes.removeAt(widget.noteIndex);
+                        //    widget.controller.allNotes.removeAt(widget.noteIndex);
+                        widget.controller.allNotes.add(noteModel.AllNote(
+                            description: value.note!.description!,
+                            createdAt: value.note!.createdAt!,
+                            byUser: noteModel.ByUser.fromJson(
+                                value.note!.byUser!.toJson()),
+                            forProduct: noteModel.ForProduct.fromJson(
+                                value.note!.forProduct!.toJson()),
+                            iV: value.note!.iV!,
+                            sId: value.note!.sId!,
+                            updatedAt: value.note!.updatedAt!));
+                        Get.back();
+                      });
+                    } else {
+                      widget.controller
+                          .createNote(
+                        widget.forProduct,
+                        ctrlLocal.text,
+                      )
+                          .then((CreateNoteModel value) {
+                        CommonDialogs.showToast(ctx: context, msg: value!.message!);
+                        if (value.status == 1) {
 
-                      widget.controller.allNotes.add(noteModel.AllNote(
-                          description: value.note!.description!,
-                          createdAt: value.note!.createdAt!,
-                          byUser: noteModel.ByUser.fromJson(
-                              value.note!.byUser!.toJson()),
-                          forProduct: noteModel.ForProduct.fromJson(
-                              value.note!.forProduct!.toJson()),
-                          iV: value.note!.iV!,
-                          sId: value.note!.sId!,
-                          updatedAt: value.note!.updatedAt!));
-                      print("values.... ${widget.controller.allNotes.length}");
-                    } else {}
+                          widget.controller.allNotes.add(noteModel.AllNote(
+                              description: value.note!.description!,
+                              createdAt: value.note!.createdAt!,
+                              byUser: noteModel.ByUser.fromJson(
+                                  value.note!.byUser!.toJson()),
+                              forProduct: noteModel.ForProduct.fromJson(
+                                  value.note!.forProduct!.toJson()),
+                              iV: value.note!.iV!,
+                              sId: value.note!.sId!,
+                              updatedAt: value.note!.updatedAt!));
+                          print("values.... ${widget.controller.allNotes.length}");
+                        } else {}
 
-                    Get.back();
-                  });
-                }
-              },
-              child: Text(
-                  widget.noteId.compareTo("-1") == 0 ? "Add Note" : "Update"))
-        ]),
+                        Get.back();
+                      });
+                    }
+                  },
+                  child: Text(
+                      widget.noteId.compareTo("-1") == 0 ? "Add Note" : "Update"))
+            ]),
+          ),
+        ),
       ),
     );
   }

@@ -94,6 +94,7 @@ class _LoginViewState extends State<LoginView> {
           sharedPref.setString(ShredPrefNames.USER_EMAIL, value.user!.email!);
           sharedPref.setString(ShredPrefNames.USER_NAME, value.user!.name!);
           sharedPref.setString(ShredPrefNames.USER_ID, value.user!.sId!);
+          sharedPref.setString(ShredPrefNames.USER_PHOTO, value.user!.photo!);
           sharedPref.setString(
               ShredPrefNames.USER_TOKEN, value.user!.tokens![0]!.token!);
           sharedPref.setString(ShredPrefNames.USER_PASSWORD,
@@ -105,8 +106,12 @@ class _LoginViewState extends State<LoginView> {
               USER_EMAIL: value.user!.email!,
               USER_ID: value.user!.sId!,
               USER_NAME: value.user!.name!,
+
               USER_PASSWORD: passwordController.text.toString().trim(),
-              USER_TOKEN: value.user!.tokens![0]!.token!));
+              USER_TOKEN: value.user!.tokens![0]!.token!,
+            PHOTO: value.user!.photo!,
+
+          ));
 
           Get.offAndToNamed(Routes.HOME);
         }

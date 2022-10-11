@@ -20,7 +20,7 @@ void main() async {
   // initializing the firebase app
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Get.put(LoginController(USER_TOKEN: "",USER_PASSWORD: "",USER_NAME: "",USER_ID: "",USER_EMAIL: ""));
+  Get.put(LoginController(USER_TOKEN: "",USER_PASSWORD: "",USER_NAME: "",USER_ID: "",USER_EMAIL: "",PHOTO: ""));
 
   ErrorWidget.builder = (FlutterErrorDetails details) {
     // If we're in debug mode, use the normal error widget which shows the error

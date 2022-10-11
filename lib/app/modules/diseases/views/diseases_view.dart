@@ -30,7 +30,12 @@ class _DiseasesViewState extends State<DiseasesView> {
 
     super.initState();
   }
+@override
+  void dispose() {
 
+  txeController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
