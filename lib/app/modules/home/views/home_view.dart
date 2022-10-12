@@ -7,6 +7,7 @@ import 'package:therapeutic/app/modules/home/views/widgets/home_widget.dart';
 import 'package:therapeutic/app/modules/home/views/widgets/tab_widget.dart';
 import '../../notes/views/notes_view.dart';
 import '../../profile/views/profile_view.dart';
+import '../../search/views/search_view.dart';
 import '../controllers/home_controller.dart';
 import 'package:therapeutic/app/modules/models/product_model.dart'
     as productModel;
@@ -16,9 +17,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     Future<List<type.Data>> typeData = controller.getTypeData();
     Future<List<productModel.Data>> productData =
-        controller.fetchFoodProducts("", 20);
+        controller.fetchFoodProducts("","", 20);
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         //backgroundColor: Colors.white,
         appBar: AppBar(
@@ -51,7 +52,9 @@ class HomeView extends GetView<HomeController> {
                     );
                   }),
              // Text("1"),
+              SearchView(),
               NotesView(),
+
               DiseasesView(),
               ProfileView(),
             ],

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:therapeutic/app/modules/models/product_detail_model.dart';
@@ -34,7 +35,7 @@ class TypeProvider extends GetConnect {
   }
 
   Future<List<productModel.Data>> fetchFoodProducts(
-      String catName, int limit) async {
+      String catName, String searchName, int limit) async {
     /*final response =
         await get('http://192.168.30.222:5000/food/fetchFoodProducts',);
     if (response.statusCode == 200) {
@@ -53,14 +54,22 @@ class TypeProvider extends GetConnect {
         'GET', Uri.parse(Config.baseUrl + 'food/fetchFoodProducts'));
     if (catName.isNotEmpty) {
       request.bodyFields = {'type': catName};
+    } else if (searchName.toString().isNotEmpty) {
+      print("in to search name ");
+
+      request.bodyFields = {'searchName': searchName};
     } else {
       request.bodyFields = {'limit': limit.toString()};
     }
-    request.headers.addAll(headers);
 
+
+
+    request.headers.addAll(headers);
+print("request......${request.bodyFields}");
     http.StreamedResponse response = await request.send();
     var res = await response.stream.bytesToString();
     print("RESSS ${res}");
+    log(res);
     if (response.statusCode == 200) {
       // print(await response.stream.bytesToString());
 

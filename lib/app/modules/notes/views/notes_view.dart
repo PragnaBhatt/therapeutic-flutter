@@ -35,7 +35,8 @@ class NotesView extends GetView<NotesController> {
         body: Obx((() {
       return allNotes.isEmpty
           ? EmptyFailureNoInternetWidget.NoData()
-          : Container(
+          : Card(
+        elevation: 2,
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: ListView.builder(
@@ -54,7 +55,7 @@ class NotesView extends GetView<NotesController> {
                             margin: const EdgeInsets.only(top: 20.0),
                             elevation: 2,
 // color: ColorConstants.brown_shade2,
-                            color: Color(
+                            color: Color(index*
                                     (math.Random().nextDouble() * 0xFFdb87b4)
                                         .toInt())
                                 .withOpacity(0.1),

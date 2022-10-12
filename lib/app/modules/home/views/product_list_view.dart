@@ -15,7 +15,7 @@ class ProductListView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     String catname = Get.arguments;
     Future<List<productModel.Data>> productData =
-        controller.fetchFoodProducts(catname);
+        controller.fetchFoodProducts(catname,"");
 
     return Scaffold(
         appBar: AppBar(

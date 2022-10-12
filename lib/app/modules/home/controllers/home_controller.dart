@@ -34,9 +34,9 @@ class HomeController extends GetxController {
     return typeProvider!.getType();
   }
 
-  Future<List<productModel.Data>> fetchFoodProducts(String catName,
-      [int limit = 20]) {
-    return typeProvider!.fetchFoodProducts(catName, limit);
+  Future<List<productModel.Data>> fetchFoodProducts(String catName,String searchName,
+      [int limit = 30]) {
+    return typeProvider!.fetchFoodProducts(catName,searchName, limit);
   }
 
   Future<ProductDetailModel> fetchFoodProductDetail(String id) {

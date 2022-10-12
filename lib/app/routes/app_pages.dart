@@ -16,6 +16,8 @@ import '../modules/notes/bindings/notes_binding.dart';
 import '../modules/notes/views/notes_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 
 part 'app_routes.dart';
 
@@ -73,12 +75,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DISEASES,
-      page: () =>  DiseasesView(),
+      page: () => DiseasesView(),
       binding: DiseasesBinding(),
-    ), GetPage(
+    ),
+    GetPage(
       name: _Paths.DISEASES_FOOD,
-      page: () =>   DiseasesFoodListView(),
+      page: () => DiseasesFoodListView(),
       binding: DiseasesBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

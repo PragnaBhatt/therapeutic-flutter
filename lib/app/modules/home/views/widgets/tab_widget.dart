@@ -29,6 +29,19 @@ class TabWidget extends StatelessWidget {
                   Text('Home'),
                 ],
               )),
+
+          Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.search, size: 20),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text('Search'),
+                ],
+              )),
           Padding(
               padding: const EdgeInsets.only(top: 12, bottom: 12),
               child: Column(

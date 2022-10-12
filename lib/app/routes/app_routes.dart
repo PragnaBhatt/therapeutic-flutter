@@ -14,6 +14,7 @@ abstract class Routes {
   static const VERYFY_USER = _Paths.VERYFY_USER;
   static const DISEASES = _Paths.DISEASES;
   static const DISEASES_FOOD = _Paths.DISEASES_FOOD;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const VERYFY_USER = '/veryfy_user';
   static const DISEASES = '/diseases';
   static const DISEASES_FOOD = '/diseases_food';
+  static const SEARCH = '/search';
 }
