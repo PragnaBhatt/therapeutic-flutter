@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:therapeutic/app/commons/connectivity/checker.dart';
@@ -60,8 +61,9 @@ class _LoginViewState extends State<LoginView> {
         //&& stepCleared == 3) {
         emailController.text = userEmail;
         passwordController.text = userPassword;
-        //   setState(() {});
-        // doLogin(_formKey);
+        setState(() {
+          doLogin(_formKey);
+        });
       } else if (stepCleared == 1) {
         Get.offAndToNamed(Routes.VERYFY_USER);
       }
@@ -114,106 +116,11 @@ class _LoginViewState extends State<LoginView> {
           Get.offAndToNamed(Routes.HOME);
         }
       });
-
-      // AdminAPIs.loginUser(emailController.text.toString().trim(),
-      //         passwordController.text.toString().trim())
-      //     .then((streamedResponse) async {
-      //   var responseJson = (await streamedResponse.stream.bytesToString());
-
-      //   if (streamedResponse.statusCode == 200) {
-      //     var model = LoginModel.fromJson(json.decode(responseJson));
-      //     print(model.message);
-      //     sharedPref.setString(
-      //         ShredPrefNames.USER_EMAIL, model.data!.details!.email!);
-      //     sharedPref.setString(
-      //         ShredPrefNames.USER_NAME, model.data!.details!.userName!);
-      //     sharedPref.setString(
-      //         ShredPrefNames.USER_ID, model.data!.details!.sId!);
-      //     sharedPref.setString(ShredPrefNames.USER_TOKEN, model.data!.token!);
-      //     sharedPref.setString(ShredPrefNames.USER_PASSWORD,
-      //         passwordController.text.toString().trim());
-
-      //     //   Navigator.pushReplacementNamed(context,Route.)
-      //     Navigator.pushReplacementNamed(context, DashboardScreen.routeName);
-      //   } else {
-      //     CommonDialogs.showMsgDialog(
-      //       msg: json.decode(responseJson)['message'],
-      //       ctx: context,
-      //       onOkClick: () {
-      //         Navigator.pop(context);
-      //       },
-      //     );
-      //   }
-      // }).catchError((e) {
-      //   CommonDialogs.showMsgDialog(
-      //     msg: e.toString(),
-      //     ctx: context,
-      //     onOkClick: () {
-      //       Navigator.pop(context);
-      //     },
-      //   );
-      // });
-
-      LoginModel loginModel;
-
-      /* loginController!
-          .doLogin(emailController.text.toString().trim(),
-              passwordController.text.toString().trim())
-          .then((value) => {});*/
-      //    await APIImplementer()
-      //        .loginUser(
-      //            email: emailController.text.toString().trim(),
-      //            password: passwordController.text.toString().trim())
-      //        .then((value) => {
-      //              if (value != null)
-      //                {
-      //                  print("in to login response... " + value.toString()),
-      //                  loginModel = LoginModel.fromJson(value.data),
-      //                    sharedPref.setString(
-      //                      ShredPrefNames.USER_EMAIL, loginModel.user!.email!),
-      //                  sharedPref.setString(
-      //                      ShredPrefNames.USER_NAME, loginModel.user!.name!),
-      //                  sharedPref.setString(
-      //                      ShredPrefNames.USER_ID, loginModel.user!.sId!),
-      //                  sharedPref.setString(
-      //                      ShredPrefNames.USER_TOKEN,
-      //                      loginModel
-      //                          .user!
-      //                          .tokens![loginModel.user!.tokens!.length - 1]
-      //                          .token!),
-      //                  sharedPref.setString(ShredPrefNames.USER_PASSWORD,
-      //                      passwordController.text.toString().trim()),
-      //
-      //                  Get.put<CommonController>(CommonController(
-      //                      USER_EMAIL: loginModel.user!.email!,
-      //                      USER_ID: loginModel.user!.sId!,
-      //                      USER_NAME: loginModel.user!.name!,
-      //                      USER_TOKEN: loginModel
-      //                          .user!
-      //                          .tokens![loginModel.user!.tokens!.length - 1]
-      //                          .token!,
-      //                      USER_PASSWORD:
-      //                          passwordController.text.toString().trim())),
-      //
-      // // Get.put(PostController()),
-      //
-      //  CommonDialogs.showToast(
-      //                      ctx: context, msg: loginModel.message!),
-      //                  Get.offAndToNamed(Routes.HOME));
-      //                  /*Provider.of<ProductProvider>(context, listen: false)
-      //              .getProducts()
-      //              .then((value) {
-      //            Navigator.pushReplacementNamed(
-      //                context, DashboardScreen.routeName);
-      //          })*/
-      //                  ,
-      //                }
-      //            });
     }
   }
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   bool isSignIn = false;
   bool google = false;
@@ -242,59 +149,7 @@ class _LoginViewState extends State<LoginView> {
             children: [
               Stack(
                 children: [
-                  /*  InkWell(
-                      child: Container(
-                          margin: EdgeInsets.only(top: 25),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.black),
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Container(
-                                height: 30.0,
-                                width: 30.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/google.jpg'),
-                                      fit: BoxFit.cover),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              Text(
-                                'Sign in with Google',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ],
-                          ))),
-                      onTap: () async {
-                        GoogleSignIn googleSignIn = GoogleSignIn();
-                        GoogleSignInAccount? googleSignInAccount =
-                            await googleSignIn.signIn();
 
-                        // if (googleSignInAccount != null) {
-                        //   final GoogleSignInAuthentication googleSignInAuthentication =
-                        //   await googleSignInAccount.authentication;
-                        //   final AuthCredential authCredential = GoogleAuthProvider.credential(
-                        //       idToken: googleSignInAuthentication.idToken,
-                        //       accessToken: googleSignInAuthentication.accessToken);
-                        //
-                        //   // Getting users credential
-                        //   UserCredential result = await auth.signInWithCredential(authCredential);
-                        //   //  User user = result.user;
-                        //
-                        //   if (result != null) {
-                        //     print("result not null");
-                        //   //  Navigator.pushReplacement(
-                        //      //   context, MaterialPageRoute(builder: (context) => HomePage()));
-                        //   } // if result not null we simply call the MaterialpageRoute,
-                        //   // for go to the HomePage screen
-                        // }
-                      }),*/
                   // ElevatedButton(
                   //     style: ElevatedButton.styleFrom(
                   //       backgroundColor: context.theme.backgroundColor,
@@ -352,13 +207,7 @@ class _LoginViewState extends State<LoginView> {
                           const SizedBox(
                             height: 24,
                           ),
-                          // SvgPicture.asset(
-                          //   assetName,
-                          //   semanticsLabel: 'Login',
-                          //   alignment: Alignment.center,
-                          //   width: 180,
-                          //   height: 180,
-                          // ),
+
                           const SizedBox(
                             height: SizeConstants.SIZEDBOX_10,
                           ),
@@ -394,12 +243,16 @@ class _LoginViewState extends State<LoginView> {
                                     return null;
                                   },
                                   style: const TextStyle(
+
                                     fontSize: SizeConstants.FONT_SIZE,
                                   ),
+                                  cursorColor: ColorConstants.colorPrimary,
                                   decoration: const InputDecoration(
                                     labelText: "Enter Email Address",
                                     hintText: " Email ",
-                                    prefixIcon: Icon(Icons.email),
+
+
+                                    prefixIcon: Icon(Icons.email,color: ColorConstants.colorPrimary,),
                                     border: OutlineInputBorder(),
                                   ),
                                 ),

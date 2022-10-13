@@ -18,6 +18,10 @@ class Themes {
         buttonColor: Colors.cyan,
         textTheme: ButtonTextTheme.primary,
       ),
+// textTheme: TextTheme(bodyText1: TextStyle),
+
+
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith(
