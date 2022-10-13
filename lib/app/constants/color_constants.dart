@@ -13,6 +13,7 @@ class ColorConstants {
   // static const color_white = const Color(0xFFFFFFFF);
   static const color_font = const Color(0xFF000000);
   static const color_black = const Color(0xFF000000);
+  // static const color_black = const Color(0x80313133);
   static const color_grey = Color.fromARGB(255, 51, 48, 48);
   // static const color_black_with_80_opacity = const Color(0xCC000000);
   static const color_blur_grey = const Color(0xFF263238);

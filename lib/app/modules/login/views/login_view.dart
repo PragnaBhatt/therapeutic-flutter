@@ -21,6 +21,7 @@ import 'package:therapeutic/app/modules/login/provider/login_provider.dart';
 import '../../../commons/controller/common_controller.dart';
 import '../../../commons/utils/dialogs.dart';
 import '../../../commons/utils/wave.dart';
+import '../../../config/theme/theme_service.dart';
 import '../../../constants/color_constants.dart';
 import '../../../constants/size_constants.dart';
 import '../../../routes/app_pages.dart';
@@ -55,9 +56,8 @@ class _LoginViewState extends State<LoginView> {
       if (userEmail != null &&
           userPassword != null &&
           userEmail.isNotEmpty &&
-          userPassword.isNotEmpty)
-          {
-          //&& stepCleared == 3) {
+          userPassword.isNotEmpty) {
+        //&& stepCleared == 3) {
         emailController.text = userEmail;
         passwordController.text = userPassword;
         //   setState(() {});
@@ -103,14 +103,12 @@ class _LoginViewState extends State<LoginView> {
           Config.token = value.user!.tokens![0]!.token!;
 
           Get.put(LoginController(
-              USER_EMAIL: value.user!.email!,
-              USER_ID: value.user!.sId!,
-              USER_NAME: value.user!.name!,
-
-              USER_PASSWORD: passwordController.text.toString().trim(),
-              USER_TOKEN: value.user!.tokens![0]!.token!,
+            USER_EMAIL: value.user!.email!,
+            USER_ID: value.user!.sId!,
+            USER_NAME: value.user!.name!,
+            USER_PASSWORD: passwordController.text.toString().trim(),
+            USER_TOKEN: value.user!.tokens![0]!.token!,
             PHOTO: value.user!.photo!,
-
           ));
 
           Get.offAndToNamed(Routes.HOME);
@@ -229,7 +227,9 @@ class _LoginViewState extends State<LoginView> {
     bool isShow = true;
 
     return Scaffold(
-      //backgroundColor: ColorConstants.color_white,
+      //backgroundColor: context.theme.backgroundColor,
+      // backgroundColor: ColorConstants.colorCanvas,
+      backgroundColor: ColorConstants.colorPrimary,
       // appBar: AppBar(
       //     title: CustomWidgets.customTextWidget(
       //         dataToPrint: "Login",
@@ -295,6 +295,16 @@ class _LoginViewState extends State<LoginView> {
                         //   // for go to the HomePage screen
                         // }
                       }),*/
+                  // ElevatedButton(
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: context.theme.backgroundColor,
+                  //       padding:
+                  //       const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+                  //       textStyle: const TextStyle(
+                  //           fontSize: 16, fontWeight: FontWeight.bold),
+                  //     ),
+                  //     onPressed:ThemeService().switchTheme,
+                  //     child: const Text('Change Theme')),
                   if (isShow)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
@@ -330,7 +340,9 @@ class _LoginViewState extends State<LoginView> {
                 Padding(
                   padding: const EdgeInsets.all(40.0),
                   child: Card(
-                    elevation: 10,
+                    //  color: ColorConstants.color_primary_with_65_opacity.withOpacity(0.5),
+                    //color: ColorConstants.color_accent_with_10_opacity,
+                    elevation: 1,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -353,8 +365,8 @@ class _LoginViewState extends State<LoginView> {
                           const Text(
                             "Login with your credentials",
                             style: TextStyle(
-                                fontSize: SizeConstants.FONT_SIZE_HEADER,
-                                color: ColorConstants.colorPrimaryDark),
+                              fontSize: SizeConstants.FONT_SIZE_HEADER,
+                            ),
                           ),
                           const SizedBox(
                             height: SizeConstants.SIZEDBOX_16,
@@ -454,8 +466,8 @@ class _LoginViewState extends State<LoginView> {
                           const Text(
                             "Don't have an account?",
                             style: TextStyle(
-                                fontSize: SizeConstants.FONT_SIZE_BUTTON,
-                                color: ColorConstants.color_black),
+                              fontSize: SizeConstants.FONT_SIZE_BUTTON,
+                            ),
                           ),
                           const SizedBox(
                             height: SizeConstants.SIZEDBOX_10,
@@ -471,17 +483,17 @@ class _LoginViewState extends State<LoginView> {
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  //     decorationColor: Color_Constants.color_black,
-                                  fontSize: SizeConstants.FONT_SIZE_BUTTON,
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorConstants.colorPrimary),
+                                decoration: TextDecoration.underline,
+                                //     decorationColor: Color_Constants.color_black,
+                                fontSize: SizeConstants.FONT_SIZE_BUTTON,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           const SizedBox(
                             height: SizeConstants.SIZEDBOX_10,
                           ),
-                          InkWell(
+                          /*InkWell(
                             onTap: () {
                               // Navigator.pushNamed(
                               //     context, ForgotPassword_Screen.roteName);
@@ -495,7 +507,7 @@ class _LoginViewState extends State<LoginView> {
                                   fontWeight: FontWeight.bold,
                                   color: ColorConstants.colorPrimary),
                             ),
-                          )
+                          )*/
                         ],
                       ),
                     ),

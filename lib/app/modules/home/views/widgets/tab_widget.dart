@@ -12,8 +12,8 @@ class TabWidget extends StatelessWidget {
 
       TabBar(
 
-        labelColor: Colors.deepOrange,
-        unselectedLabelColor: Colors.black,
+       /* labelColor: Colors.deepOrange,
+        unselectedLabelColor: Colors.black,*/
         labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
         tabs: [
 

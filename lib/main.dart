@@ -10,6 +10,8 @@ import 'package:therapeutic/app/modules/login/controllers/login_controller.dart'
 
 import 'app/commons/utils/custom_error.dart';
 import 'app/config/theme/app_theme.dart';
+import 'app/config/theme/theme_service.dart';
+import 'app/config/theme/themes.dart';
 import 'app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -51,16 +53,19 @@ void main() async {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark,
+    /*  theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.light,*/
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeService().theme,
       getPages: AppPages.routes,
     ),
 
   );
 }
 
-ThemeData _buildTheme(brightness) {
+/*ThemeData _buildTheme(brightness) {
   var baseTheme = ThemeData(brightness: brightness,
     primaryColor: ColorConstants.colorPrimary1,
   );
@@ -68,7 +73,7 @@ ThemeData _buildTheme(brightness) {
   return baseTheme.copyWith(
     textTheme: GoogleFonts.biryaniTextTheme(baseTheme.textTheme),
   );
-}
+}*/
 /*ThemeData _buildTheme(brightness) {
   var baseTheme = ThemeData(
       brightness: brightness,
